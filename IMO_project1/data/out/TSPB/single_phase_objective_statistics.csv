@@ -1,0 +1,4 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPB,Random,200,-148684.12,-299297,-2502
+TSPB,2-Regret,200,15573.97,14276,17071
+TSPB,W. 2-Regret,200,12454.21,11472,13651

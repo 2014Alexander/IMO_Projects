@@ -1,0 +1,5 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPA,NN no prof.,200,2555.27,-2121,5971
+TSPA,NN + profit,200,-879.91,-3899,2712
+TSPA,GC no prof.,200,3504.5,1894,4368
+TSPA,GC + profit,200,3689.455,2936,4506

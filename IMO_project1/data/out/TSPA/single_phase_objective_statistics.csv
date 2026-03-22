@@ -1,0 +1,4 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPA,Random,200,-151764.55,-312487,-3139
+TSPA,2-Regret,200,2816.69,1185,3666
+TSPA,W. 2-Regret,200,116.225,-933,853

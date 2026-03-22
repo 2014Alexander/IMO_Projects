@@ -1,0 +1,5 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPB,NN no prof.,200,13383.1,10375,16455
+TSPB,NN + profit,200,5719.785,2251,9016
+TSPB,GC no prof.,200,13655.335,12527,15375
+TSPB,GC + profit,200,15085.385,14152,16106
