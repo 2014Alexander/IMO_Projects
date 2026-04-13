@@ -1,0 +1,368 @@
+{
+    "instanceName": "TSPB",
+    "algorithmSummaries": [
+        {
+            "algorithmName": "GC+P2D",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GC+P2D",
+                "runsCount": 100,
+                "minObjective": 14152,
+                "maxObjective": 16103,
+                "avgObjective": 14970.01
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GC+P2D",
+                "runsCount": 100,
+                "minRuntimeNanos": 13083200,
+                "maxRuntimeNanos": 29436000,
+                "avgRuntimeNanos": 1.5318103E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "GC+P2D",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 102,
+                    "cycle": [102, 32, 131, 151, 54, 117, 198, 24, 1, 197, 38, 27, 16, 42, 156, 30, 193, 31, 164, 73, 105, 136, 190, 80, 46, 162, 175, 78, 142, 45, 5, 7, 177, 123, 171, 87, 61, 79, 91, 58, 77, 50, 14, 81, 153, 186, 165, 137, 114, 127, 89, 103, 26, 113, 194, 88, 176, 180, 163, 129, 119, 106, 124, 128, 110, 86, 185, 52, 172, 57, 154, 94, 47, 60, 23, 148, 66, 179, 22, 130, 95, 181, 62, 18, 55, 174, 183, 140, 199, 59, 28, 101, 149, 4, 53, 184, 155, 189, 167, 69, 159, 143, 41, 37, 35, 109, 0, 29, 39, 12, 111, 82, 68, 8, 104, 56, 144, 160, 33, 49, 11, 139, 43, 126, 195, 145, 15, 3, 70, 161, 13, 132, 169, 65, 188, 6, 150, 192, 85, 2, 138, 182, 25, 19, 112, 121, 116, 98, 51, 120, 67, 71, 125, 90, 191, 178, 10, 133, 44, 17, 100, 63]
+                },
+                "solutionMetrics": {
+                    "tourLength": 27965,
+                    "profitSum": 44068,
+                    "objective": 16103
+                },
+                "runtimeNanos": 13886200
+            }
+        },
+        {
+            "algorithmName": "GreedyLS_RandomStart_SWAP_VERTICES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_RandomStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minObjective": -13713,
+                "maxObjective": 14842,
+                "avgObjective": -779.68
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_RandomStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minRuntimeNanos": 40168600,
+                "maxRuntimeNanos": 1292064100,
+                "avgRuntimeNanos": 4.32969009E8
+            },
+            "bestExecutionResult": {
+                "algorithmName": "GreedyLS_RandomStart_SWAP_VERTICES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 129,
+                    "cycle": [162, 45, 142, 5, 123, 25, 157, 8, 68, 82, 58, 50, 41, 111, 160, 33, 49, 11, 139, 74, 118, 98, 51, 120, 67, 147, 192, 150, 6, 188, 65, 169, 132, 126, 13, 161, 70, 145, 15, 3, 84, 155, 189, 167, 184, 53, 174, 55, 18, 62, 128, 110, 86, 95, 130, 22, 179, 57, 172, 52, 166, 194, 88, 176, 180, 26, 103, 89, 127, 165, 163, 186, 153, 14, 87, 171, 177, 78, 175, 7, 61, 79, 91, 141, 97, 77, 81, 106, 124, 143, 159, 119, 37, 35, 109, 0, 12, 29, 39, 144, 56, 104, 138, 182, 2, 85, 71, 191, 90, 125, 116, 121, 112, 19, 151, 117, 198, 24, 1, 197, 16, 38, 27, 42, 156, 30, 193, 31, 54, 164, 73, 136, 105, 190, 80, 46]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23616,
+                    "profitSum": 38458,
+                    "objective": 14842
+                },
+                "runtimeNanos": 163529800
+            }
+        },
+        {
+            "algorithmName": "GreedyLS_RandomStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 9279,
+                "maxObjective": 19217,
+                "avgObjective": 17216.29
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 37023000,
+                "maxRuntimeNanos": 937175200,
+                "avgRuntimeNanos": 3.76942988E8
+            },
+            "bestExecutionResult": {
+                "algorithmName": "GreedyLS_RandomStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 142,
+                    "cycle": [142, 78, 175, 162, 46, 80, 190, 105, 193, 117, 198, 30, 42, 156, 24, 1, 197, 16, 27, 38, 102, 32, 96, 63, 100, 17, 44, 133, 10, 178, 115, 147, 192, 150, 6, 188, 65, 169, 126, 13, 132, 161, 70, 3, 15, 145, 189, 167, 155, 184, 53, 174, 140, 183, 181, 110, 86, 185, 22, 130, 95, 9, 199, 4, 149, 101, 28, 59, 20, 23, 60, 148, 47, 154, 94, 66, 57, 172, 179, 52, 166, 194, 88, 176, 180, 26, 103, 114, 137, 127, 165, 89, 163, 186, 153, 119, 159, 143, 106, 124, 128, 62, 18, 55, 34, 69, 29, 39, 12, 0, 109, 35, 37, 41, 111, 68, 8, 104, 56, 144, 160, 33, 49, 11, 139, 182, 138, 157, 171, 87, 82, 58, 77, 97, 141, 91, 79, 61, 7, 177, 123, 25, 158, 116, 98, 51, 120, 67, 71, 191, 90, 125, 131, 121, 112, 19, 151, 54, 31, 164, 73, 136, 45]
+                },
+                "solutionMetrics": {
+                    "tourLength": 25328,
+                    "profitSum": 44545,
+                    "objective": 19217
+                },
+                "runtimeNanos": 512288600
+            }
+        },
+        {
+            "algorithmName": "GreedyLS_BestStart_SWAP_VERTICES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_BestStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minObjective": 14651,
+                "maxObjective": 16448,
+                "avgObjective": 15460.66
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_BestStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minRuntimeNanos": 20047800,
+                "maxRuntimeNanos": 41058300,
+                "avgRuntimeNanos": 2.716316E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "GreedyLS_BestStart_SWAP_VERTICES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 135,
+                    "cycle": [102, 63, 100, 17, 44, 133, 10, 178, 191, 90, 125, 71, 67, 120, 51, 98, 116, 121, 112, 19, 158, 25, 157, 138, 182, 2, 85, 192, 150, 6, 188, 65, 169, 132, 13, 161, 70, 3, 15, 145, 195, 126, 43, 139, 11, 49, 33, 160, 144, 56, 104, 8, 82, 68, 111, 12, 39, 29, 0, 109, 35, 37, 41, 159, 143, 69, 189, 167, 155, 184, 53, 4, 149, 101, 28, 59, 199, 140, 183, 174, 55, 18, 62, 181, 95, 130, 22, 179, 66, 148, 23, 60, 47, 154, 94, 57, 172, 52, 185, 86, 110, 128, 124, 106, 119, 129, 163, 137, 114, 194, 88, 176, 180, 26, 103, 89, 127, 165, 186, 153, 81, 14, 50, 77, 58, 91, 79, 61, 21, 87, 171, 123, 177, 7, 5, 45, 142, 78, 175, 162, 46, 80, 190, 105, 136, 73, 164, 31, 193, 30, 156, 42, 16, 27, 38, 197, 1, 24, 198, 117, 54, 151, 131, 135, 32]
+                },
+                "solutionMetrics": {
+                    "tourLength": 27904,
+                    "profitSum": 44352,
+                    "objective": 16448
+                },
+                "runtimeNanos": 25614700
+            }
+        },
+        {
+            "algorithmName": "GreedyLS_BestStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_BestStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 15169,
+                "maxObjective": 17558,
+                "avgObjective": 16273.76
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "GreedyLS_BestStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 26196600,
+                "maxRuntimeNanos": 59032000,
+                "avgRuntimeNanos": 3.7424572E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "GreedyLS_BestStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 150,
+                    "cycle": [150, 6, 188, 65, 169, 132, 13, 161, 70, 3, 15, 145, 195, 126, 43, 134, 85, 2, 74, 118, 98, 51, 116, 121, 112, 19, 158, 25, 182, 138, 11, 49, 33, 160, 144, 56, 104, 8, 82, 68, 111, 41, 37, 12, 39, 29, 0, 35, 109, 69, 189, 167, 155, 184, 53, 4, 149, 101, 28, 59, 199, 140, 183, 174, 55, 18, 62, 181, 95, 130, 22, 148, 23, 60, 47, 154, 94, 66, 57, 172, 52, 179, 185, 86, 110, 128, 124, 106, 143, 159, 119, 129, 163, 89, 103, 26, 180, 176, 88, 194, 114, 137, 127, 165, 186, 153, 81, 14, 50, 77, 58, 91, 79, 61, 21, 87, 171, 123, 177, 7, 5, 45, 142, 78, 175, 162, 46, 80, 190, 105, 136, 73, 164, 31, 193, 30, 156, 42, 16, 27, 38, 197, 1, 24, 198, 117, 54, 151, 131, 125, 120, 67, 71, 191, 90, 122, 32, 102, 63, 100, 17, 44, 133, 10, 178, 115, 147, 192]
+                },
+                "solutionMetrics": {
+                    "tourLength": 27058,
+                    "profitSum": 44616,
+                    "objective": 17558
+                },
+                "runtimeNanos": 37605800
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_RandomStart_SWAP_VERTICES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_RandomStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minObjective": -16154,
+                "maxObjective": 17637,
+                "avgObjective": 3395.23
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_RandomStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minRuntimeNanos": 231600,
+                "maxRuntimeNanos": 315433900,
+                "avgRuntimeNanos": 1.36001586E8
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_RandomStart_SWAP_VERTICES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 31,
+                    "cycle": [9, 95, 185, 22, 148, 47, 154, 94, 66, 57, 172, 52, 179, 86, 166, 194, 88, 176, 180, 26, 103, 89, 127, 165, 163, 186, 153, 81, 77, 50, 14, 41, 111, 160, 49, 11, 139, 2, 85, 98, 125, 90, 191, 178, 10, 133, 44, 17, 100, 63, 96, 32, 102, 38, 27, 16, 197, 1, 24, 156, 42, 30, 198, 117, 193, 31, 164, 73, 54, 151, 19, 112, 121, 116, 51, 120, 67, 71, 147, 192, 150, 6, 188, 65, 169, 132, 126, 13, 161, 70, 3, 15, 145, 189, 167, 69, 29, 39, 144, 56, 104, 8, 68, 82, 58, 87, 171, 177, 7, 5, 78, 175, 142, 45, 162, 46, 80, 190, 105, 136, 173, 123, 25, 182, 138, 33, 12, 0, 109, 35, 143, 159, 119, 106, 124, 128, 110, 62, 18, 55, 174, 183, 140, 4, 149, 101, 28, 59, 199]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23787,
+                    "profitSum": 41424,
+                    "objective": 17637
+                },
+                "runtimeNanos": 70068900
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 433,
+                "maxObjective": 19028,
+                "avgObjective": 16063.5
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 116300,
+                "maxRuntimeNanos": 184404400,
+                "avgRuntimeNanos": 8.7339352E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 192,
+                    "cycle": [192, 147, 71, 67, 120, 191, 178, 10, 133, 44, 17, 100, 122, 90, 125, 51, 98, 116, 121, 112, 19, 151, 198, 24, 1, 197, 38, 27, 16, 42, 156, 30, 117, 193, 54, 31, 164, 73, 136, 105, 190, 80, 46, 162, 175, 78, 142, 45, 5, 7, 177, 123, 25, 182, 138, 11, 49, 33, 160, 39, 29, 109, 35, 0, 12, 144, 56, 104, 157, 171, 61, 79, 91, 141, 97, 77, 58, 82, 87, 8, 68, 111, 41, 143, 159, 119, 153, 186, 163, 165, 127, 89, 103, 26, 180, 176, 88, 194, 166, 86, 110, 128, 124, 62, 18, 55, 181, 95, 185, 22, 179, 52, 172, 57, 66, 94, 154, 47, 148, 60, 23, 20, 59, 28, 101, 149, 4, 199, 140, 183, 174, 53, 184, 155, 167, 189, 3, 70, 161, 15, 145, 13, 126, 132, 169, 65, 188, 6, 150]
+                },
+                "solutionMetrics": {
+                    "tourLength": 22983,
+                    "profitSum": 42011,
+                    "objective": 19028
+                },
+                "runtimeNanos": 91677800
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_BestStart_SWAP_VERTICES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_BestStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minObjective": 14651,
+                "maxObjective": 16448,
+                "avgObjective": 15462.05
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_BestStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minRuntimeNanos": 19784500,
+                "maxRuntimeNanos": 34842000,
+                "avgRuntimeNanos": 2.436882E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_BestStart_SWAP_VERTICES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 135,
+                    "cycle": [102, 63, 100, 17, 44, 133, 10, 178, 191, 90, 125, 71, 67, 120, 51, 98, 116, 121, 112, 19, 158, 25, 157, 138, 182, 2, 85, 192, 150, 6, 188, 65, 169, 132, 13, 161, 70, 3, 15, 145, 195, 126, 43, 139, 11, 49, 33, 160, 144, 56, 104, 8, 82, 68, 111, 12, 39, 29, 0, 109, 35, 37, 41, 159, 143, 69, 189, 167, 155, 184, 53, 4, 149, 101, 28, 59, 199, 140, 183, 174, 55, 18, 62, 181, 95, 130, 22, 179, 66, 148, 23, 60, 47, 154, 94, 57, 172, 52, 185, 86, 110, 128, 124, 106, 119, 129, 163, 137, 114, 194, 88, 176, 180, 26, 103, 89, 127, 165, 186, 153, 81, 14, 50, 77, 58, 91, 79, 61, 21, 87, 171, 123, 177, 7, 5, 45, 142, 78, 175, 162, 46, 80, 190, 105, 136, 73, 164, 31, 193, 30, 156, 42, 16, 27, 38, 197, 1, 24, 198, 117, 54, 151, 131, 135, 32]
+                },
+                "solutionMetrics": {
+                    "tourLength": 27904,
+                    "profitSum": 44352,
+                    "objective": 16448
+                },
+                "runtimeNanos": 22335100
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_BestStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_BestStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 15151,
+                "maxObjective": 17262,
+                "avgObjective": 16187.04
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "SteepestLS_BestStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 21801900,
+                "maxRuntimeNanos": 50143300,
+                "avgRuntimeNanos": 2.8098299E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_BestStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 195,
+                    "cycle": [195, 145, 15, 3, 70, 161, 13, 132, 169, 65, 188, 6, 150, 192, 147, 115, 178, 10, 133, 44, 17, 100, 63, 102, 32, 122, 90, 191, 71, 67, 120, 125, 131, 151, 54, 117, 198, 24, 1, 197, 38, 27, 16, 42, 156, 30, 193, 31, 164, 73, 136, 105, 190, 80, 46, 162, 175, 78, 142, 45, 5, 7, 177, 123, 171, 87, 21, 61, 79, 91, 58, 77, 50, 14, 81, 153, 186, 163, 165, 137, 114, 127, 89, 103, 26, 113, 194, 88, 176, 180, 129, 119, 106, 124, 128, 110, 86, 185, 179, 52, 172, 57, 66, 94, 154, 47, 60, 23, 148, 22, 130, 95, 181, 62, 18, 55, 174, 183, 140, 199, 59, 28, 101, 149, 4, 53, 184, 155, 167, 189, 69, 29, 39, 12, 0, 109, 35, 143, 159, 41, 111, 68, 82, 8, 104, 56, 144, 160, 33, 49, 11, 138, 182, 25, 158, 19, 112, 121, 116, 51, 98, 118, 74, 85, 2, 43, 126]
+                },
+                "solutionMetrics": {
+                    "tourLength": 27232,
+                    "profitSum": 44494,
+                    "objective": 17262
+                },
+                "runtimeNanos": 31753100
+            }
+        },
+        {
+            "algorithmName": "RandomWalk_RandomStart_SWAP_VERTICES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "RandomWalk_RandomStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minObjective": -253678,
+                "maxObjective": -3972,
+                "avgObjective": -123563.46
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "RandomWalk_RandomStart_SWAP_VERTICES",
+                "runsCount": 100,
+                "minRuntimeNanos": 433006600,
+                "maxRuntimeNanos": 434707800,
+                "avgRuntimeNanos": 4.33147835E8
+            },
+            "bestExecutionResult": {
+                "algorithmName": "RandomWalk_RandomStart_SWAP_VERTICES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 82,
+                    "cycle": [82, 98, 107, 19]
+                },
+                "solutionMetrics": {
+                    "tourLength": 4881,
+                    "profitSum": 909,
+                    "objective": -3972
+                },
+                "runtimeNanos": 433051600
+            }
+        },
+        {
+            "algorithmName": "RandomWalk_RandomStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "RandomWalk_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": -255333,
+                "maxObjective": -3972,
+                "avgObjective": -124480.46
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "RandomWalk_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 432993800,
+                "maxRuntimeNanos": 433411500,
+                "avgRuntimeNanos": 4.3314354E8
+            },
+            "bestExecutionResult": {
+                "algorithmName": "RandomWalk_RandomStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 82,
+                    "cycle": [82, 98, 107, 19]
+                },
+                "solutionMetrics": {
+                    "tourLength": 4881,
+                    "profitSum": 909,
+                    "objective": -3972
+                },
+                "runtimeNanos": 433192200
+            }
+        }
+    ]
+}
