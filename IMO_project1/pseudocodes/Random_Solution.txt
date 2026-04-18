@@ -1,0 +1,20 @@
+RandomSolution(start, vertices)
+
+    // Losujemy liczbę wierzchołków, które wejdą do rozwiązania.
+    k ← losowa liczba całkowita z przedziału [2, |vertices|]
+
+    // Cykl zaczynamy od zadanego wierzchołka startowego.
+    cycle ← [start]
+
+    // Tworzymy zbiór wszystkich pozostałych wierzchołków.
+    remaining ← wszystkie wierzchołki poza start
+
+    selected_remaining ← losowo wybrane k - 1 różnych wierzchołków z remaining
+
+    // Losujemy ich kolejność w cyklu.
+    permute(selected_remaining)
+
+    // Dodajemy je za wierzchołkiem startowym.
+    dołącz selected_remaining na koniec cycle
+
+    zwróć cycle

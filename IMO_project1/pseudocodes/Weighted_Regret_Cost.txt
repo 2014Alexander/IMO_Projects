@@ -1,0 +1,70 @@
+Weighted_Regret_Cost(start, D, profit, λ)
+
+    // Rozpoczynamy od wierzchołka startowego.
+    cycle ← [start]
+
+    // Zbiór wierzchołków, które nie zostały jeszcze użyte.
+    not_used ← wszystkie wierzchołki poza start
+
+    // Drugi wierzchołek wybieramy jako najbliższy sąsiad startu.
+    second ← wierzchołek z not_used o najmniejszej wartości D[start][v]
+    dodaj second do cycle
+    usuń second z not_used
+
+    // W każdej iteracji wybieramy wierzchołek o największym score,
+    // a następnie wstawiamy go w jego najlepsze miejsce.
+    dopóki not_used nie jest puste:
+
+        best_vertex ← brak
+        best_score ← -∞
+        best_position_for_best_vertex ← brak
+
+        // Dla każdego jeszcze niewstawionego wierzchołka
+        // szukamy jego najlepszej i drugiej najlepszej opcji wstawienia.
+        dla każdego v z not_used:
+
+            best_cost ← +∞
+            second_best_cost ← +∞
+            best_position ← brak
+
+            // Sprawdzamy każdą krawędź (a, b) w aktualnym cyklu.
+            // Wstawienie v między a i b usuwa krawędź (a, b)
+            // i dodaje dwie nowe: (a, v) oraz (v, b).
+            dla każdej krawędzi (a, b) w cycle:
+
+                increase_length ← D[a][v] + D[v][b] - D[a][b]
+
+                // Koszt wstawienia uwzględnia:
+                // - wzrost długości cyklu,
+                // - profit nowego wierzchołka.
+                cost ← increase_length - profit[v]
+
+                // Aktualizujemy najlepszy i drugi najlepszy koszt dla v.
+                jeżeli cost < best_cost:
+                    second_best_cost ← best_cost
+                    best_cost ← cost
+                    best_position ← pozycja między a i b
+
+                w przeciwnym razie jeżeli cost < second_best_cost:
+                    second_best_cost ← cost
+
+            // Regret mierzy, jak bardzo gorsza jest druga najlepsza opcja
+            // od najlepszej.
+            regret ← second_best_cost - best_cost
+
+            // Score łączy dwa kryteria:
+            // - duży regret jest korzystny,
+            // - mały best_cost też jest korzystny.
+            score ← λ · regret - (1 - λ) · best_cost
+
+            // Wybieramy wierzchołek o największym score.
+            jeżeli score > best_score:
+                best_score ← score
+                best_vertex ← v
+                best_position_for_best_vertex ← best_position
+
+        // Wstawiamy wybrany wierzchołek w jego najlepsze miejsce.
+        wstaw best_vertex do cycle w best_position_for_best_vertex
+        usuń best_vertex z not_used
+
+    zwróć cycle

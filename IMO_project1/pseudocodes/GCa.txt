@@ -1,0 +1,52 @@
+GCa(start, D)
+
+    // Rozpoczynamy od wierzchołka startowego.
+    cycle ← [start]
+
+    // Zbiór wierzchołków, które nie zostały jeszcze użyte.
+    not_used ← wszystkie wierzchołki poza start
+
+    // Drugi wierzchołek wybieramy jako najbliższy sąsiad startu.
+    second ← wierzchołek z not_used o najmniejszej wartości D[start][v]
+    dodaj second do cycle
+    usuń second z not_used
+
+    // W każdej iteracji wybieramy taki wierzchołek i takie miejsce wstawienia,
+    // które powodują najmniejszy wzrost długości aktualnego cyklu.
+    dopóki not_used nie jest puste:
+
+        best_vertex ← brak
+        best_position ← brak
+        best_increase ← +∞
+
+        // Dla każdego jeszcze niewstawionego wierzchołka
+        // szukamy jego najlepszego miejsca wstawienia do cyklu.
+        dla każdego v z not_used:
+
+            vertex_best_position ← brak
+            vertex_best_increase ← +∞
+
+            // Sprawdzamy każdą krawędź (a, b) w aktualnym cyklu.
+            // Wstawienie v między a i b usuwa krawędź (a, b)
+            // i dodaje dwie nowe: (a, v) oraz (v, b).
+            dla każdej krawędzi (a, b) w cycle:
+
+                increase ← D[a][v] + D[v][b] - D[a][b]
+
+                // Wybieramy najlepsze miejsce wstawienia dla ustalonego v.
+                jeżeli increase < vertex_best_increase:
+                    vertex_best_increase ← increase
+                    vertex_best_position ← pozycja między a i b
+
+            // Spośród wszystkich kandydatów wybieramy ten wierzchołek,
+            // którego najlepsza wstawka daje najmniejszy wzrost długości.
+            jeżeli vertex_best_increase < best_increase:
+                best_increase ← vertex_best_increase
+                best_vertex ← v
+                best_position ← vertex_best_position
+
+        // Wstawiamy wybrany wierzchołek w najlepsze znalezione miejsce.
+        wstaw best_vertex do cycle w best_position
+        usuń best_vertex z not_used
+
+    zwróć cycle

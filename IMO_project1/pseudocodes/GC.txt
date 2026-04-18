@@ -1,0 +1,56 @@
+GC(start, D, profit)
+
+    // Rozpoczynamy od wierzchołka startowego.
+    cycle ← [start]
+
+    // Drugi wierzchołek wybieramy jako najbliższy sąsiad startu.
+    second ← wierzchołek spośród pozostałych o najmniejszej wartości D[start][v]
+    dodaj second do cycle
+
+    // Zbiór wierzchołków, które nie zostały jeszcze użyte.
+    not_used ← wszystkie wierzchołki poza tymi z cycle
+
+    // W każdej iteracji wybieramy taki wierzchołek i takie miejsce wstawienia,
+    // które dają najmniejszy koszt: wzrost długości minus profit wierzchołka.
+    dopóki not_used nie jest puste:
+
+        best_vertex ← brak
+        best_position ← brak
+        best_cost ← +∞
+
+        // Dla każdego jeszcze niewstawionego wierzchołka
+        // szukamy jego najlepszego miejsca wstawienia do cyklu.
+        dla każdego v z not_used:
+
+            vertex_best_position ← brak
+            vertex_best_cost ← +∞
+
+            // Sprawdzamy każdą krawędź (a, b) w aktualnym cyklu.
+            // Wstawienie v między a i b usuwa krawędź (a, b)
+            // i dodaje dwie nowe: (a, v) oraz (v, b).
+            dla każdej krawędzi (a, b) w cycle:
+
+                increase ← D[a][v] + D[v][b] - D[a][b]
+
+                // Koszt łączy dwa efekty:
+                // - increase: o ile wydłuży się cykl,
+                // - profit[v]: jaki zysk daje nowy wierzchołek.
+                cost ← increase - profit[v]
+
+                // Dla ustalonego v wybieramy najlepsze miejsce wstawienia.
+                jeżeli cost < vertex_best_cost:
+                    vertex_best_cost ← cost
+                    vertex_best_position ← pozycja między a i b
+
+            // Spośród wszystkich kandydatów wybieramy ten wierzchołek,
+            // którego najlepsza wstawka daje najmniejszy koszt.
+            jeżeli vertex_best_cost < best_cost:
+                best_cost ← vertex_best_cost
+                best_vertex ← v
+                best_position ← vertex_best_position
+
+        // Wstawiamy wybrany wierzchołek w najlepsze znalezione miejsce.
+        wstaw best_vertex do cycle w best_position
+        usuń best_vertex z not_used
+
+    zwróć cycle

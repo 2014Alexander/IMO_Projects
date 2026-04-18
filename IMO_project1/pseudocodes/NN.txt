@@ -1,0 +1,35 @@
+NN(start, D, profit)
+
+    // Rozpoczynamy cykl od zadanego wierzchołka startowego.
+    cycle ← [start]
+
+    // Zbiór wierzchołków, które nie zostały jeszcze użyte.
+    not_used ← wszystkie wierzchołki poza start
+
+    // W każdej iteracji wybieramy kolejny wierzchołek
+    // na podstawie kosztu: odległość minus profit.
+    dopóki not_used nie jest puste:
+
+        current ← ostatni element cycle
+        best_vertex ← brak
+        best_cost ← +∞
+
+        dla każdego v z not_used:
+
+            // Mała odległość jest korzystna,
+            // a duży profit także jest korzystny,
+            // dlatego używamy kosztu D[current][v] - profit[v].
+            cost ← D[current][v] - profit[v]
+
+            jeżeli cost < best_cost:
+                best_cost ← cost
+                best_vertex ← v
+
+        // Dodajemy najlepszy znaleziony wierzchołek
+        // na koniec budowanego cyklu.
+        dodaj best_vertex na koniec cycle
+
+        // Usuwamy go ze zbioru jeszcze nieużytych wierzchołków.
+        usuń best_vertex z not_used
+
+    zwróć cycle

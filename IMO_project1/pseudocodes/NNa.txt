@@ -1,0 +1,28 @@
+NNa(start, D)
+
+    // Rozpoczynamy cykl od zadanego wierzchołka startowego.
+    cycle ← [start]
+
+    // Zbiór wierzchołków, które nie zostały jeszcze użyte.
+    not_used ← wszystkie wierzchołki poza start
+
+    // W każdej iteracji wybieramy najbliższego sąsiada
+    // ostatniego wierzchołka aktualnego cyklu.
+    dopóki not_used nie jest puste:
+
+        current ← ostatni element cycle
+        best_vertex ← brak
+        best_distance ← +∞
+
+        dla każdego v z not_used:
+
+            distance ← D[current][v]
+
+            jeżeli distance < best_distance:
+                best_distance ← distance
+                best_vertex ← v
+
+        dodaj best_vertex na koniec cycle
+        usuń best_vertex z not_used
+
+    zwróć cycle
