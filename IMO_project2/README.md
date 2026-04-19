@@ -248,27 +248,28 @@ selected ← tablica logiczna długości |vertices|, początkowo wszędzie false
 ### RandomSolution
 
 <pre>
-<strong>RandomSolution(start, vertices)</strong>
+<strong>RandomSolution.solve(instance, startVertexId)</strong>
 
-    <em>// Losujemy liczbę wierzchołków, które wejdą do rozwiązania.</em>
-    k ← losowa liczba całkowita z przedziału [2, |vertices|]
+    n ← instance.size
 
-    <em>// Cykl zaczynamy od zadanego wierzchołka startowego.</em>
-    cycle ← [start]
+    k ← 2 + losowa liczba całkowita z przedziału [0, n - 2]
 
-    <em>// Tworzymy zbiór wszystkich pozostałych wierzchołków.</em>
-    remaining ← wszystkie wierzchołki poza start
+    cycle ← pusta lista o pojemności k
+    <strong>Dodaj</strong> startVertexId do cycle
 
-    selected_remaining ← losowo wybrane k - 1 różnych wierzchołków z remaining
+    remainingVertexIds ← pusta lista
 
-    <em>// Losujemy ich kolejność w cyklu.</em>
-    <strong>permute</strong>(selected_remaining)
+    <strong>dla każdego</strong> vertex z instance.vertices
+        <strong>jeżeli</strong> vertex.id ≠ startVertexId
+            <strong>Dodaj</strong> vertex.id do remainingVertexIds
 
-    <em>// Dodajemy je za wierzchołkiem startowym.</em>
-    <strong>dołącz</strong> selected_remaining na koniec cycle
+    <strong>permute</strong>(remainingVertexIds)
 
-    <strong>zwróć</strong> cycle
+    <strong>Dodaj</strong> do cycle pierwsze k - 1 elementów z remainingVertexIds
+
+    <strong>zwróć</strong> Solution(instance.name, startVertexId, cycle)
 </pre>
+
 
 ### GreedyCycle
 
