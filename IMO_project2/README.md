@@ -23,33 +23,12 @@ W implementacji local search nie przeliczano całej funkcji celu od początku po
 Jeżeli Δ > 0, ruch poprawia rozwiązanie. Jeżeli Δ < 0, ruch je pogarsza. Taki sposób oceny pozwala szybko porównywać ruchy wstawienia, usunięcia, zamiany wierzchołków oraz zamiany krawędzi bez kosztownego przeliczania całego cyklu po każdej modyfikacji.
 
 ## Pseudokody algorytmów
-
 Poniżej zebrano pseudokody wszystkich najważniejszych elementów wykorzystanych w laboratorium 2.
 
-> [!IMPORTANT]
-> Oba rodzaje sąsiedztwa zawsze zawierają ruchy `InsertMove` i `DeleteMove`.
-> Różni się tylko ruch wewnątrztrasowy: `SwapVerticesMove` albo `SwapEdgesMove`.
+### Notacja
 
-> [!TIP]
-> Najwygodniej czyta się tę sekcję grupami: najpierw `Notacja` i `Move`, potem `Ruchy`, następnie `Sąsiedztwa`, `Rozwiązania startowe` i na końcu `Algorytmy`.
-
-### Układ sekcji
-
-| Grupa | Zawartość |
-|---|---|
-| Notacja i interfejs | `Notacja`, `Move` |
-| Ruchy elementarne | `InsertMove`, `DeleteMove`, `SwapVerticesMove`, `SwapEdgesMove` |
-| Sąsiedztwa | `Neighborhood_SwapVertices`, `Neighborhood_SwapEdges` |
-| Rozwiązania startowe i heurystyki | `RandomSolution`, `GreedyCycle`, `PhaseTwoDelete`, `BestHeuristicSolution` |
-| Algorytmy | `GreedyLocalSearch`, `SteepestLocalSearch`, `RandomWalk` |
-
-### Notacja i interfejs ruchu
-
-<details open>
-<summary><strong>Notacja</strong></summary>
-
-```text
-Notacja używana we wszystkich pseudokodach
+<pre>
+<strong>Notacja używana we wszystkich pseudokodach</strong>
 
 D      - macierz odległości, gdzie D[a][b] oznacza odległość między wierzchołkami a i b.
 profit - tablica zysków, gdzie profit[v] oznacza zysk z odwiedzenia wierzchołka v.
@@ -68,34 +47,26 @@ Oba rodzaje sąsiedztwa zawsze zawierają ruchy InsertMove i DeleteMove.
 Różni się tylko ruch wewnątrztrasowy:
 - Neighborhood_SwapVertices używa SwapVerticesMove,
 - Neighborhood_SwapEdges używa SwapEdgesMove.
-```
+</pre>
 
-</details>
+### Move
 
-<details>
-<summary><strong>Move</strong></summary>
+<pre>
+<strong>Move</strong>
 
-```text
-Move
+<strong>Operacja</strong> delta(cycle, D, profit)
+    <strong>Zwróć</strong> zmianę wartości funkcji celu po wykonaniu ruchu.
 
-Operacja delta(cycle, D, profit)
-    Zwróć zmianę wartości funkcji celu po wykonaniu ruchu.
+<strong>Operacja</strong> apply(cycle)
+    <strong>Zmodyfikuj</strong> cycle zgodnie z definicją ruchu.
+</pre>
 
-Operacja apply(cycle)
-    Zmodyfikuj cycle zgodnie z definicją ruchu.
-```
+### InsertMove
 
-</details>
+<pre>
+<strong>InsertMove(v, i)</strong>
 
-### Ruchy elementarne
-
-<details>
-<summary><strong>InsertMove</strong> — dodanie jednego wierzchołka do cyklu</summary>
-
-```text
-InsertMove(v, i)
-
-Dane ruchu:
+<strong>Dane ruchu:</strong>
     v - wierzchołek, który ma zostać wstawiony do cyklu
     i - pozycja, po której wstawiamy v
 
@@ -105,21 +76,18 @@ InsertMove.delta(cycle, D, profit)
 
     Δ ← profit[v] - D[a][v] - D[v][b] + D[a][b]
 
-    zwróć Δ
+    <strong>zwróć</strong> Δ
 
 InsertMove.apply(cycle)
-    Wstaw v do cycle bezpośrednio po pozycji i.
-```
+    <strong>Wstaw</strong> v do cycle bezpośrednio po pozycji i.
+</pre>
 
-</details>
+### DeleteMove
 
-<details>
-<summary><strong>DeleteMove</strong> — usunięcie jednego wierzchołka z cyklu</summary>
+<pre>
+<strong>DeleteMove(i)</strong>
 
-```text
-DeleteMove(i)
-
-Dane ruchu:
+<strong>Dane ruchu:</strong>
     i - pozycja wierzchołka usuwanego z cyklu
 
 DeleteMove.delta(cycle, D, profit)
@@ -129,37 +97,34 @@ DeleteMove.delta(cycle, D, profit)
 
     Δ ← -profit[v] - D[a][b] + D[a][v] + D[v][b]
 
-    zwróć Δ
+    <strong>zwróć</strong> Δ
 
 DeleteMove.apply(cycle)
-    Usuń z cycle wierzchołek znajdujący się na pozycji i.
-```
+    <strong>Usuń</strong> z cycle wierzchołek znajdujący się na pozycji i.
+</pre>
 
-</details>
+### SwapVerticesMove
 
-<details>
-<summary><strong>SwapVerticesMove</strong> — zamiana dwóch wierzchołków w cyklu</summary>
+<pre>
+<strong>SwapVerticesMove(i, j)</strong>
 
-```text
-SwapVerticesMove(i, j)
-
-Dane ruchu:
+<strong>Dane ruchu:</strong>
     i, j - pozycje dwóch wymienianych wierzchołków
 
 SwapVerticesMove.delta(cycle, D, profit)
-    jeżeli pozycje i oraz j są sąsiednie
-        zwróć DeltaAdjacent(cycle, D, i, j)
-    w przeciwnym wypadku
-        zwróć DeltaNonAdjacent(cycle, D, i, j)
+    <strong>jeżeli</strong> pozycje i oraz j są sąsiednie
+        <strong>zwróć</strong> DeltaAdjacent(cycle, D, i, j)
+    <strong>w przeciwnym wypadku</strong>
+        <strong>zwróć</strong> DeltaNonAdjacent(cycle, D, i, j)
 
 SwapVerticesMove.apply(cycle)
     Zamień miejscami elementy cycle[i] oraz cycle[j].
 
 DeltaAdjacent(cycle, D, i, j)
-    jeżeli next(i) = j
+    <strong>jeżeli</strong> next(i) = j
         left ← i
         right ← j
-    w przeciwnym wypadku
+    <strong>w przeciwnym wypadku</strong>
         left ← j
         right ← i
 
@@ -171,7 +136,7 @@ DeltaAdjacent(cycle, D, i, j)
     removed ← D[a][vLeft] + D[vRight][b]
     added   ← D[a][vRight] + D[vLeft][b]
 
-    zwróć removed - added
+    <strong>zwróć</strong> removed - added
 
 DeltaNonAdjacent(cycle, D, i, j)
     a  ← cycle[prev(i)]
@@ -185,23 +150,20 @@ DeltaNonAdjacent(cycle, D, i, j)
     removed ← D[a][vi] + D[vi][b] + D[c][vj] + D[vj][d]
     added   ← D[a][vj] + D[vj][b] + D[c][vi] + D[vi][d]
 
-    zwróć removed - added
-```
+    <strong>zwróć</strong> removed - added
+</pre>
 
-</details>
+### SwapEdgesMove
 
-<details>
-<summary><strong>SwapEdgesMove</strong> — zamiana dwóch niesąsiednich krawędzi</summary>
+<pre>
+<strong>SwapEdgesMove(i, j)</strong>
 
-```text
-SwapEdgesMove(i, j)
-
-Dane ruchu:
+<strong>Dane ruchu:</strong>
     i, j - pozycje wyznaczające krawędzie
            (cycle[i], cycle[next(i)]) oraz (cycle[j], cycle[next(j)])
 
-Założenie:
-    Rozważamy tylko pary niesąsiednich krawędzi.
+<strong>Założenie:</strong>
+    <strong>Rozważamy</strong> tylko pary niesąsiednich krawędzi.
 
 SwapEdgesMove.delta(cycle, D, profit)
     a ← cycle[i]
@@ -212,289 +174,249 @@ SwapEdgesMove.delta(cycle, D, profit)
     removed ← D[a][b] + D[c][d]
     added   ← D[a][c] + D[b][d]
 
-    zwróć removed - added
+    <strong>zwróć</strong> removed - added
 
 SwapEdgesMove.apply(cycle)
     left ← next(i)
     right ← j
 
-    Odwróć kolejność fragmentu cycle od pozycji left do pozycji right.
-```
+    <strong>Odwróć</strong> kolejność fragmentu cycle od pozycji left do pozycji right.
+</pre>
 
-</details>
+### Neighborhood_SwapVertices
 
-### Sąsiedztwa
-
-> [!NOTE]
-> Każde sąsiedztwo łączy ruchy zmieniające zbiór wybranych wierzchołków z jednym typem ruchu wewnątrztrasowego.
-
-<details>
-<summary><strong>Neighborhood_SwapVertices</strong> — insert/delete + swap wierzchołków</summary>
-
-```text
-Neighborhood_SwapVertices(cycle, vertices)
+<pre>
+<strong>Neighborhood_SwapVertices(cycle, vertices)</strong>
 
 moves ← pusta lista
 selected ← tablica logiczna długości |vertices|, początkowo wszędzie false
 
-Dla każdej pozycji p od 0 do |cycle| - 1
+<strong>Dla każdej pozycji</strong> p od 0 do |cycle| - 1
     selected[cycle[p]] ← true
 
-Dla każdego wierzchołka vertex z vertices
+<strong>Dla każdego wierzchołka</strong> vertex z vertices
     v ← vertex.id
 
-    jeżeli selected[v] = false
-        dla każdej pozycji i od 0 do |cycle| - 1
-            Dodaj InsertMove(v, i) do moves
+    <strong>jeżeli</strong> selected[v] = false
+        <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
+            <strong>Dodaj</strong> InsertMove(v, i) do moves
 
-jeżeli |cycle| > 2
-    dla każdej pozycji i od 0 do |cycle| - 1
-        Dodaj DeleteMove(i) do moves
+<strong>jeżeli</strong> |cycle| &gt; 2
+    <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
+        <strong>Dodaj</strong> DeleteMove(i) do moves
 
-jeżeli |cycle| > 2
-    dla każdej pozycji i od 0 do |cycle| - 2
-        dla każdej pozycji j od i + 1 do |cycle| - 1
-            Dodaj SwapVerticesMove(i, j) do moves
+<strong>jeżeli</strong> |cycle| &gt; 2
+    <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 2
+        <strong>dla każdej pozycji</strong> j od i + 1 do |cycle| - 1
+            <strong>Dodaj</strong> SwapVerticesMove(i, j) do moves
 
-zwróć moves
-```
+<strong>zwróć</strong> moves
+</pre>
 
-</details>
+### Neighborhood_SwapEdges
 
-<details>
-<summary><strong>Neighborhood_SwapEdges</strong> — insert/delete + swap krawędzi</summary>
-
-```text
-Neighborhood_SwapEdges(cycle, vertices)
+<pre>
+<strong>Neighborhood_SwapEdges(cycle, vertices)</strong>
 
 moves ← pusta lista
 selected ← tablica logiczna długości |vertices|, początkowo wszędzie false
 
-Dla każdej pozycji p od 0 do |cycle| - 1
+<strong>Dla każdej pozycji</strong> p od 0 do |cycle| - 1
     selected[cycle[p]] ← true
 
-Dla każdego wierzchołka vertex z vertices
+<strong>Dla każdego wierzchołka</strong> vertex z vertices
     v ← vertex.id
 
-    jeżeli selected[v] = false
-        dla każdej pozycji i od 0 do |cycle| - 1
-            Dodaj InsertMove(v, i) do moves
+    <strong>jeżeli</strong> selected[v] = false
+        <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
+            <strong>Dodaj</strong> InsertMove(v, i) do moves
 
-jeżeli |cycle| > 2
-    dla każdej pozycji i od 0 do |cycle| - 1
-        Dodaj DeleteMove(i) do moves
+<strong>jeżeli</strong> |cycle| &gt; 2
+    <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
+        <strong>Dodaj</strong> DeleteMove(i) do moves
 
-Dla każdej pozycji i od 0 do |cycle| - 2
-    dla każdej pozycji j od i + 1 do |cycle| - 1
-        jeżeli next(i) = j lub next(j) = i
-            Pomiń tę parę
-        w przeciwnym wypadku
-            Dodaj SwapEdgesMove(i, j) do moves
+<strong>Dla każdej pozycji</strong> i od 0 do |cycle| - 2
+    <strong>dla każdej pozycji</strong> j od i + 1 do |cycle| - 1
+        <strong>jeżeli</strong> next(i) = j lub next(j) = i
+            <strong>Pomiń</strong> tę parę
+        <strong>w przeciwnym wypadku</strong>
+            <strong>Dodaj</strong> SwapEdgesMove(i, j) do moves
 
-zwróć moves
-```
+<strong>zwróć</strong> moves
+</pre>
 
-</details>
+### RandomSolution
 
-### Rozwiązania startowe i heurystyki
+<pre>
+<strong>RandomSolution(start, vertices)</strong>
 
-<details>
-<summary><strong>RandomSolution</strong> — losowe rozwiązanie startowe</summary>
-
-```text
-RandomSolution(start, vertices)
-
-    // Losujemy liczbę wierzchołków, które wejdą do rozwiązania.
+    <em>// Losujemy liczbę wierzchołków, które wejdą do rozwiązania.</em>
     k ← losowa liczba całkowita z przedziału [2, |vertices|]
 
-    // Cykl zaczynamy od zadanego wierzchołka startowego.
+    <em>// Cykl zaczynamy od zadanego wierzchołka startowego.</em>
     cycle ← [start]
 
-    // Tworzymy zbiór wszystkich pozostałych wierzchołków.
+    <em>// Tworzymy zbiór wszystkich pozostałych wierzchołków.</em>
     remaining ← wszystkie wierzchołki poza start
 
     selected_remaining ← losowo wybrane k - 1 różnych wierzchołków z remaining
 
-    // Losujemy ich kolejność w cyklu.
-    permute(selected_remaining)
+    <em>// Losujemy ich kolejność w cyklu.</em>
+    <strong>permute</strong>(selected_remaining)
 
-    // Dodajemy je za wierzchołkiem startowym.
-    dołącz selected_remaining na koniec cycle
+    <em>// Dodajemy je za wierzchołkiem startowym.</em>
+    <strong>dołącz</strong> selected_remaining na koniec cycle
 
-    zwróć cycle
-```
+    <strong>zwróć</strong> cycle
+</pre>
 
-</details>
+### GreedyCycle
 
-<details>
-<summary><strong>GreedyCycle</strong> — konstrukcja rozwiązania heurystycznego</summary>
-
-```text
-GreedyCycle(startVertexId, vertices, D, profit)
+<pre>
+<strong>GreedyCycle(startVertexId, vertices, D, profit)</strong>
 
 cycle ← lista zawierająca startVertexId
 
 secondVertex ← wierzchołek różny od startVertexId,
                dla którego D[startVertexId][v] jest najmniejsze
-Dodaj secondVertex do cycle
+<strong>Dodaj</strong> secondVertex do cycle
 
 notUsed ← wszystkie wierzchołki różne od startVertexId i secondVertex
 
-dopóki notUsed nie jest puste
+<strong>dopóki</strong> notUsed nie jest puste
     bestVertex ← brak
     bestInsertionPosition ← brak
     bestCost ← +∞
 
-    dla każdego wierzchołka v z notUsed
+    <strong>dla każdego wierzchołka</strong> v z notUsed
         vertexBestPosition ← brak
         vertexBestCost ← +∞
 
-        dla każdej krawędzi (a, b) bieżącego cycle
+        <strong>dla każdej krawędzi</strong> (a, b) bieżącego cycle
             increase ← D[a][v] + D[v][b] - D[a][b]
             cost ← increase - profit[v]
 
-            jeżeli cost < vertexBestCost
+            <strong>jeżeli</strong> cost &lt; vertexBestCost
                 vertexBestCost ← cost
                 vertexBestPosition ← pozycja bezpośrednio po a
 
-        jeżeli vertexBestCost < bestCost
+        <strong>jeżeli</strong> vertexBestCost &lt; bestCost
             bestCost ← vertexBestCost
             bestVertex ← v
             bestInsertionPosition ← vertexBestPosition
 
-    Wstaw bestVertex do cycle na pozycji bestInsertionPosition
-    Usuń bestVertex z notUsed
+    <strong>Wstaw</strong> bestVertex do cycle na pozycji bestInsertionPosition
+    <strong>Usuń</strong> bestVertex z notUsed
 
-zwróć cycle
-```
+<strong>zwróć</strong> cycle
+</pre>
 
-</details>
+### PhaseTwoDelete
 
-<details>
-<summary><strong>PhaseTwoDelete</strong> — poprawa przez usuwanie nieopłacalnych wierzchołków</summary>
+<pre>
+<strong>PhaseTwoDelete(cycle, D, profit)</strong>
 
-```text
-PhaseTwoDelete(cycle, D, profit)
-
-dopóki |cycle| > 2
+<strong>dopóki</strong> |cycle| &gt; 2
     bestImprovement ← 0
     bestIndex ← brak
 
-    dla każdej pozycji i od 0 do |cycle| - 1
+    <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
         a ← cycle[prev(i)]
         v ← cycle[i]
         b ← cycle[next(i)]
 
         improvement ← D[a][v] + D[v][b] - D[a][b] - profit[v]
 
-        jeżeli improvement > bestImprovement
+        <strong>jeżeli</strong> improvement &gt; bestImprovement
             bestImprovement ← improvement
             bestIndex ← i
 
-    jeżeli bestImprovement > 0
-        Usuń z cycle wierzchołek na pozycji bestIndex
-    w przeciwnym wypadku
-        przerwij pętlę
+    <strong>jeżeli</strong> bestImprovement &gt; 0
+        <strong>Usuń</strong> z cycle wierzchołek na pozycji bestIndex
+    <strong>w przeciwnym wypadku</strong>
+        <strong>przerwij pętlę</strong>
 
-zwróć cycle
-```
+<strong>zwróć</strong> cycle
+</pre>
 
-</details>
+### BestHeuristicSolution
 
-<details>
-<summary><strong>BestHeuristicSolution</strong> — najlepsze rozwiązanie startowe z lab1</summary>
-
-```text
-BestHeuristicSolution(startVertexId, vertices, D, profit)
+<pre>
+<strong>BestHeuristicSolution(startVertexId, vertices, D, profit)</strong>
 
 cycle ← GreedyCycle(startVertexId, vertices, D, profit)
 cycle ← PhaseTwoDelete(cycle, D, profit)
 
-zwróć cycle
-```
+<strong>zwróć</strong> cycle
+</pre>
 
-</details>
+### GreedyLocalSearch
 
-### Algorytmy
-
-> [!IMPORTANT]
-> W wersji `greedy` akceptowany jest pierwszy ruch z `Δ > 0`.
-> W wersji `steepest` przeglądane są wszystkie ruchy i wybierany jest najlepszy.
-
-<details>
-<summary><strong>GreedyLocalSearch</strong> — pierwszy ruch poprawiający</summary>
-
-```text
-GreedyLocalSearch(initialSolutionAlgorithm, neighborhoodType, startVertexId, vertices, D, profit, random)
+<pre>
+<strong>GreedyLocalSearch(initialSolutionAlgorithm, neighborhoodType, startVertexId, vertices, D, profit, random)</strong>
 
 cycle ← initialSolutionAlgorithm(startVertexId, vertices, D, profit, random)
 
-powtarzaj
+<strong>powtarzaj</strong>
     improved ← false
 
-    jeżeli neighborhoodType = SWAP_VERTICES
+    <strong>jeżeli</strong> neighborhoodType = SWAP_VERTICES
         moves ← Neighborhood_SwapVertices(cycle, vertices)
-    w przeciwnym wypadku
+    <strong>w przeciwnym wypadku</strong>
         moves ← Neighborhood_SwapEdges(cycle, vertices)
 
-    Losowo przetasuj moves
+    <strong>Losowo przetasuj</strong> moves
 
-    dla każdego move z moves
+    <strong>dla każdego move</strong> z moves
         Δ ← move.delta(cycle, D, profit)
 
-        jeżeli Δ > 0
+        <strong>jeżeli</strong> Δ &gt; 0
             move.apply(cycle)
             improved ← true
-            przerwij pętlę
+            <strong>przerwij pętlę</strong>
 
-dopóki improved = true
+<strong>dopóki</strong> improved = true
 
-zwróć cycle
-```
+<strong>zwróć</strong> cycle
+</pre>
 
-</details>
+### SteepestLocalSearch
 
-<details>
-<summary><strong>SteepestLocalSearch</strong> — najlepszy ruch poprawiający</summary>
-
-```text
-SteepestLocalSearch(initialSolutionAlgorithm, neighborhoodType, startVertexId, vertices, D, profit)
+<pre>
+<strong>SteepestLocalSearch(initialSolutionAlgorithm, neighborhoodType, startVertexId, vertices, D, profit)</strong>
 
 cycle ← initialSolutionAlgorithm(startVertexId, vertices, D, profit)
 
-powtarzaj
+<strong>powtarzaj</strong>
     improved ← false
     bestMove ← brak
     bestDelta ← 0
 
-    jeżeli neighborhoodType = SWAP_VERTICES
+    <strong>jeżeli</strong> neighborhoodType = SWAP_VERTICES
         moves ← Neighborhood_SwapVertices(cycle, vertices)
-    w przeciwnym wypadku
+    <strong>w przeciwnym wypadku</strong>
         moves ← Neighborhood_SwapEdges(cycle, vertices)
 
-    dla każdego move z moves
+    <strong>dla każdego move</strong> z moves
         Δ ← move.delta(cycle, D, profit)
 
-        jeżeli Δ > bestDelta
+        <strong>jeżeli</strong> Δ &gt; bestDelta
             bestDelta ← Δ
             bestMove ← move
 
-    jeżeli bestMove ≠ brak
+    <strong>jeżeli</strong> bestMove ≠ brak
         bestMove.apply(cycle)
         improved ← true
 
-dopóki improved = true
+<strong>dopóki</strong> improved = true
 
-zwróć cycle
-```
+<strong>zwróć</strong> cycle
+</pre>
 
-</details>
+### RandomWalk
 
-<details>
-<summary><strong>RandomWalk</strong> — losowe błądzenie z pamiętaniem najlepszego rozwiązania</summary>
-
-```text
-RandomWalk(initialSolutionAlgorithm, neighborhoodType, startVertexId, vertices, D, profit, timeLimit, random)
+<pre>
+<strong>RandomWalk(initialSolutionAlgorithm, neighborhoodType, startVertexId, vertices, D, profit, timeLimit, random)</strong>
 
 cycle ← initialSolutionAlgorithm(startVertexId, vertices, D, profit, random)
 currentScore ← Evaluate(cycle, D, profit)
@@ -504,10 +426,10 @@ bestCycle ← kopia cycle
 
 endTime ← bieżący czas + timeLimit
 
-Dopóki bieżący czas < endTime
-    jeżeli neighborhoodType = SWAP_VERTICES
+<strong>Dopóki</strong> bieżący czas &lt; endTime
+    <strong>jeżeli</strong> neighborhoodType = SWAP_VERTICES
         moves ← Neighborhood_SwapVertices(cycle, vertices)
-    w przeciwnym wypadku
+    <strong>w przeciwnym wypadku</strong>
         moves ← Neighborhood_SwapEdges(cycle, vertices)
 
     move ← losowo wybrany element z moves
@@ -516,25 +438,23 @@ Dopóki bieżący czas < endTime
     move.apply(cycle)
     currentScore ← currentScore + Δ
 
-    jeżeli currentScore > bestScore
+    <strong>jeżeli</strong> currentScore &gt; bestScore
         bestScore ← currentScore
         bestCycle ← kopia cycle
 
-zwróć bestCycle
+<strong>zwróć</strong> bestCycle
 
 Evaluate(cycle, D, profit)
     score ← 0
 
-    dla każdej pozycji i od 0 do |cycle| - 1
+    <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
         score ← score + profit[cycle[i]]
 
-    dla każdej pozycji i od 0 do |cycle| - 1
+    <strong>dla każdej pozycji</strong> i od 0 do |cycle| - 1
         score ← score - D[cycle[i]][cycle[next(i)]]
 
-    zwróć score
-```
-
-</details>
+    <strong>zwróć</strong> score
+</pre>
 
 ## Sposób przeprowadzenia eksperymentu
 
