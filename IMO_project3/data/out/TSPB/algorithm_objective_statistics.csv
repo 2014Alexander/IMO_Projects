@@ -1,0 +1,5 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPB,2-Regret+P2D,100,18119.96,16877,19294
+TSPB,SteepestLS_RandomStart_SWAP_EDGES,100,16063.5,433,19028
+TSPB,SteepestLS_LM_RandomStart_SWAP_EDGES,100,16377.58,4465,18897
+TSPB,SteepestLS_CM_RandomStart_SWAP_EDGES,100,17040.37,4731,19107

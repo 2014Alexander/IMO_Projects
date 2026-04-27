@@ -1,0 +1,137 @@
+{
+    "instanceName": "TSPA",
+    "algorithmSummaries": [
+        {
+            "algorithmName": "2-Regret+P2D",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "2-Regret+P2D",
+                "runsCount": 100,
+                "minObjective": 5027,
+                "maxObjective": 6934,
+                "avgObjective": 6145.24
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "2-Regret+P2D",
+                "runsCount": 100,
+                "minRuntimeNanos": 12191200,
+                "maxRuntimeNanos": 108509400,
+                "avgRuntimeNanos": 1.7676254E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "2-Regret+P2D",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 30,
+                    "cycle": [30, 48, 160, 192, 181, 103, 146, 22, 20, 18, 69, 108, 67, 163, 36, 140, 93, 68, 110, 191, 139, 198, 46, 117, 170, 0, 153, 183, 89, 76, 23, 186, 114, 64, 15, 61, 62, 9, 33, 37, 148, 12, 130, 94, 124, 111, 167, 128, 55, 52, 106, 178, 3, 32, 138, 49, 102, 155, 144, 132, 21, 7, 164, 58, 71, 27, 107, 90, 39, 165, 8, 119, 40, 185, 179, 91, 196, 169, 174, 187, 81, 17, 157, 31, 13, 85, 188, 56, 113, 171, 88, 16, 168, 145, 78, 25, 44, 120, 82, 2, 87, 125, 74, 152, 97, 1, 101, 150, 100, 26, 19, 189, 99, 121, 182, 136, 53, 158, 180, 173, 6, 194, 161, 162, 72, 109, 51, 66, 141, 60, 118, 59, 115, 193, 41, 96, 5, 116, 65, 47, 105, 77, 149, 131, 166, 28, 184, 11, 35, 126, 29, 156, 112, 4, 190, 10, 177, 104, 147, 54]
+                },
+                "solutionMetrics": {
+                    "tourLength": 25234,
+                    "profitSum": 32168,
+                    "objective": 6934
+                },
+                "runtimeNanos": 12445700
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 69,
+                "maxObjective": 7640,
+                "avgObjective": 5734.21
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 911800,
+                "maxRuntimeNanos": 601805800,
+                "avgRuntimeNanos": 9.4905669E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_RandomStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 78,
+                    "cycle": [78, 145, 179, 91, 168, 31, 13, 56, 188, 157, 17, 196, 169, 81, 187, 174, 90, 107, 27, 39, 165, 119, 40, 185, 8, 138, 32, 49, 102, 155, 144, 61, 62, 9, 15, 64, 114, 186, 23, 137, 176, 66, 141, 51, 109, 60, 46, 68, 93, 140, 36, 163, 67, 108, 69, 18, 20, 22, 146, 103, 195, 159, 193, 41, 96, 115, 118, 59, 72, 162, 161, 24, 149, 131, 47, 65, 116, 105, 77, 166, 11, 184, 28, 192, 160, 48, 30, 54, 147, 104, 177, 10, 190, 4, 112, 126, 156, 29, 127, 70, 6, 173, 180, 158, 53, 136, 182, 121, 99, 189, 19, 100, 26, 101, 150, 1, 97, 152, 74, 125, 87, 2, 82, 120, 44, 25]
+                },
+                "solutionMetrics": {
+                    "tourLength": 20054,
+                    "profitSum": 27694,
+                    "objective": 7640
+                },
+                "runtimeNanos": 88239500
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_LM_RandomStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "SteepestLS_LM_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 1107,
+                "maxObjective": 7611,
+                "avgObjective": 5677.65
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "SteepestLS_LM_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 489800,
+                "maxRuntimeNanos": 116133200,
+                "avgRuntimeNanos": 5949563.0
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_LM_RandomStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 78,
+                    "cycle": [164, 58, 71, 27, 107, 90, 187, 81, 174, 169, 196, 17, 157, 188, 56, 13, 31, 168, 91, 179, 145, 78, 25, 44, 120, 82, 2, 87, 125, 74, 152, 97, 1, 150, 101, 26, 100, 19, 189, 99, 121, 182, 136, 53, 158, 180, 173, 6, 194, 127, 29, 156, 126, 112, 4, 84, 11, 166, 28, 184, 104, 147, 54, 30, 48, 160, 192, 181, 103, 146, 195, 159, 199, 18, 69, 108, 67, 163, 110, 191, 139, 198, 46, 115, 193, 41, 96, 5, 42, 43, 77, 105, 47, 65, 116, 59, 72, 51, 109, 118, 60, 141, 66, 176, 12, 130, 94, 124, 111, 167, 148, 37, 33, 9, 62, 61, 144, 155, 102, 49, 32, 138, 8, 185, 40, 119, 165, 39, 95, 7]
+                },
+                "solutionMetrics": {
+                    "tourLength": 19737,
+                    "profitSum": 27348,
+                    "objective": 7611
+                },
+                "runtimeNanos": 4767100
+            }
+        },
+        {
+            "algorithmName": "SteepestLS_CM_RandomStart_SWAP_EDGES",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "SteepestLS_CM_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minObjective": 3865,
+                "maxObjective": 7506,
+                "avgObjective": 5943.18
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "SteepestLS_CM_RandomStart_SWAP_EDGES",
+                "runsCount": 100,
+                "minRuntimeNanos": 3894000,
+                "maxRuntimeNanos": 113815300,
+                "avgRuntimeNanos": 1.8743198E7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "SteepestLS_CM_RandomStart_SWAP_EDGES",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 140,
+                    "cycle": [140, 36, 163, 67, 108, 69, 18, 199, 22, 146, 103, 195, 159, 193, 41, 96, 115, 198, 46, 60, 141, 66, 51, 109, 72, 118, 59, 65, 116, 105, 77, 166, 28, 192, 160, 48, 30, 54, 147, 104, 184, 11, 84, 4, 112, 126, 156, 29, 127, 194, 6, 173, 180, 158, 53, 136, 182, 121, 99, 189, 19, 100, 26, 101, 150, 1, 97, 152, 74, 125, 87, 2, 82, 120, 44, 25, 78, 145, 168, 31, 13, 56, 188, 157, 17, 196, 169, 174, 81, 187, 90, 107, 27, 39, 165, 119, 40, 185, 8, 138, 32, 49, 102, 155, 144, 62, 9, 61, 15, 64, 114, 186, 23, 76, 89, 183, 153, 0, 170, 117, 93]
+                },
+                "solutionMetrics": {
+                    "tourLength": 18787,
+                    "profitSum": 26293,
+                    "objective": 7506
+                },
+                "runtimeNanos": 6468100
+            }
+        }
+    ]
+}
