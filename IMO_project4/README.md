@@ -329,11 +329,11 @@ Dla ILS oznacza liczbę perturbacji, a dla LNS i LNSa liczbę wykonanych cykli d
 W komórkach tabel podano średnią oraz zakres od minimum do maksimum.
 Czas działania jest podany w milisekundach.
 
-![Tabela 1. Wartość funkcji celu.](images/01_tabela_funkcja_celu.png)
+![Tabela 1. Wartość funkcji celu.](data/visual/01_tabela_funkcja_celu.png)
 
-![Tabela 2. Czas działania w milisekundach.](images/02_tabela_czas_dzialania.png)
+![Tabela 2. Czas działania w milisekundach.](data/visual/02_tabela_czas_dzialania.png)
 
-![Tabela 3. Liczba iteracji.](images/03_tabela_liczba_iteracji.png)
+![Tabela 3. Liczba iteracji.](data/visual/03_tabela_liczba_iteracji.png)
 
 ## 7. Wnioski
 
@@ -368,20 +368,20 @@ Wizualizacje są dodatkiem do tabel, bo główne porównanie opiera się na stat
 
 ### TSPA
 
-![TSPA - MSLS.](images/04_tspa_msls.png)
+![TSPA - MSLS.](data/visual/04_tspa_msls.png)
 
-![TSPA - ILS.](images/05_tspa_ils.png)
+![TSPA - ILS.](data/visual/05_tspa_ils.png)
 
-![TSPA - LNS.](images/06_tspa_lns.png)
+![TSPA - LNS.](data/visual/06_tspa_lns.png)
 
-![TSPA - LNSa.](images/07_tspa_lnsa.png)
+![TSPA - LNSa.](data/visual/07_tspa_lnsa.png)
 
 ### TSPB
 
-![TSPB - MSLS.](images/08_tspb_msls.png)
+![TSPB - MSLS.](data/visual/08_tspb_msls.png)
 
-![TSPB - ILS.](images/09_tspb_ils.png)
+![TSPB - ILS.](data/visual/09_tspb_ils.png)
 
-![TSPB - LNS.](images/10_tspb_lns.png)
+![TSPB - LNS.](data/visual/10_tspb_lns.png)
 
-![TSPB - LNSa.](images/11_tspb_lnsa.png)
+![TSPB - LNSa.](data/visual/11_tspb_lnsa.png)
