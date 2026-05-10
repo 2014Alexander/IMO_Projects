@@ -1,0 +1,231 @@
+{
+    "instanceName": "TSPA",
+    "parameters": [
+        {
+            "name": "runsCount",
+            "value": "20"
+        },
+        {
+            "name": "mslsStartsCount",
+            "value": "200"
+        },
+        {
+            "name": "mslsAverageRuntimeNanos",
+            "value": "2.203507035E9"
+        },
+        {
+            "name": "timedAlgorithmsLimitNanos",
+            "value": "2203507035"
+        },
+        {
+            "name": "localSearch",
+            "value": "SteepestLocalSearchWithCandidateMoves"
+        },
+        {
+            "name": "candidateEdgesCount",
+            "value": "10"
+        },
+        {
+            "name": "ilsPerturbation",
+            "value": "RandomSwapEdgesPerturbation"
+        },
+        {
+            "name": "ilsPerturbationMoves",
+            "value": "30"
+        },
+        {
+            "name": "lnsDestroy",
+            "value": "SegmentDestroyOperator"
+        },
+        {
+            "name": "lnsDestroyRatio",
+            "value": "0.4"
+        },
+        {
+            "name": "lnsSegmentsCount",
+            "value": "5"
+        },
+        {
+            "name": "lnsSegmentCandidateListSize",
+            "value": "15"
+        },
+        {
+            "name": "repair",
+            "value": "TwoRegretRepairOperator"
+        },
+        {
+            "name": "repairFinalImprover",
+            "value": "PhaseTwoDelete"
+        }
+    ],
+    "algorithmSummaries": [
+        {
+            "algorithmName": "MSLS",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "MSLS",
+                "runsCount": 20,
+                "minObjective": 7304,
+                "maxObjective": 7967,
+                "avgObjective": 7576.55
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "MSLS",
+                "runsCount": 20,
+                "minRuntimeNanos": 1957899100,
+                "maxRuntimeNanos": 3043123600,
+                "avgRuntimeNanos": 2.203507035E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "MSLS",
+                "runsCount": 20,
+                "minIterationCount": 200,
+                "maxIterationCount": 200,
+                "avgIterationCount": 200.0
+            },
+            "bestExecutionResult": {
+                "algorithmName": "MSLS",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 164,
+                    "cycle": [164, 7, 95, 39, 165, 8, 119, 40, 185, 106, 178, 3, 32, 138, 49, 102, 155, 144, 61, 62, 9, 33, 37, 148, 15, 64, 114, 83, 23, 76, 89, 183, 143, 170, 0, 117, 93, 140, 68, 46, 198, 139, 191, 110, 163, 67, 108, 69, 18, 20, 22, 146, 103, 195, 159, 193, 41, 96, 5, 42, 192, 160, 48, 30, 54, 147, 104, 177, 10, 190, 4, 112, 126, 156, 29, 24, 149, 131, 166, 11, 184, 28, 77, 105, 116, 65, 59, 118, 60, 141, 66, 51, 109, 72, 162, 161, 194, 6, 173, 180, 158, 53, 136, 182, 63, 130, 12, 124, 94, 19, 189, 99, 121, 100, 26, 101, 150, 1, 97, 152, 74, 125, 87, 2, 120, 44, 82, 92, 179, 91, 145, 78, 168, 31, 13, 16, 88, 171, 113, 56, 188, 157, 17, 196, 169, 81, 187, 174, 90, 107, 27, 71, 58]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23702,
+                    "profitSum": 31669,
+                    "objective": 7967
+                },
+                "runtimeNanos": 2190661600,
+                "iterationCount": 200
+            }
+        },
+        {
+            "algorithmName": "ILS",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "ILS",
+                "runsCount": 20,
+                "minObjective": 7552,
+                "maxObjective": 8624,
+                "avgObjective": 8279.1
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "ILS",
+                "runsCount": 20,
+                "minRuntimeNanos": 2203624700,
+                "maxRuntimeNanos": 2216363500,
+                "avgRuntimeNanos": 2.20616334E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "ILS",
+                "runsCount": 20,
+                "minIterationCount": 485,
+                "maxIterationCount": 706,
+                "avgIterationCount": 570.85
+            },
+            "bestExecutionResult": {
+                "algorithmName": "ILS",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 90,
+                    "cycle": [90, 174, 187, 81, 196, 169, 91, 179, 145, 78, 168, 157, 188, 85, 31, 13, 56, 113, 171, 88, 16, 25, 44, 120, 82, 2, 87, 125, 74, 152, 97, 1, 150, 101, 26, 100, 19, 189, 99, 121, 182, 136, 53, 158, 180, 173, 6, 194, 161, 162, 72, 109, 51, 66, 141, 60, 118, 59, 65, 116, 105, 77, 166, 28, 184, 11, 35, 126, 29, 156, 112, 4, 190, 10, 177, 104, 147, 54, 30, 48, 160, 192, 181, 103, 146, 195, 159, 193, 41, 96, 115, 198, 46, 68, 139, 191, 110, 163, 69, 108, 67, 36, 140, 93, 117, 170, 0, 153, 183, 89, 76, 23, 186, 114, 64, 15, 61, 62, 9, 33, 37, 148, 12, 130, 94, 124, 111, 167, 128, 49, 102, 144, 155, 14, 138, 32, 3, 178, 106, 185, 40, 119, 8, 165, 39, 95, 7, 164, 58, 71, 27, 107]
+                },
+                "solutionMetrics": {
+                    "tourLength": 22768,
+                    "profitSum": 31392,
+                    "objective": 8624
+                },
+                "runtimeNanos": 2204649400,
+                "iterationCount": 560
+            }
+        },
+        {
+            "algorithmName": "LNS",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "LNS",
+                "runsCount": 20,
+                "minObjective": 8082,
+                "maxObjective": 8591,
+                "avgObjective": 8332.45
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "LNS",
+                "runsCount": 20,
+                "minRuntimeNanos": 2204004400,
+                "maxRuntimeNanos": 2212383900,
+                "avgRuntimeNanos": 2.20701689E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "LNS",
+                "runsCount": 20,
+                "minIterationCount": 222,
+                "maxIterationCount": 441,
+                "avgIterationCount": 366.65
+            },
+            "bestExecutionResult": {
+                "algorithmName": "LNS",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 22,
+                    "cycle": [138, 32, 3, 178, 106, 185, 40, 119, 8, 165, 39, 95, 7, 164, 58, 71, 27, 107, 90, 174, 187, 81, 196, 169, 91, 179, 145, 78, 168, 157, 188, 85, 31, 13, 56, 113, 171, 88, 16, 25, 44, 120, 82, 2, 87, 125, 74, 152, 97, 1, 150, 101, 26, 100, 19, 189, 99, 121, 182, 136, 53, 158, 180, 173, 6, 194, 161, 162, 72, 109, 51, 66, 141, 60, 118, 59, 65, 116, 105, 77, 131, 149, 24, 29, 156, 126, 112, 4, 84, 11, 166, 28, 184, 190, 10, 177, 104, 147, 54, 30, 48, 160, 192, 181, 103, 146, 195, 159, 193, 41, 96, 115, 198, 46, 68, 139, 191, 110, 163, 69, 108, 67, 36, 140, 93, 117, 170, 0, 153, 183, 89, 76, 23, 186, 114, 64, 15, 61, 62, 9, 33, 37, 148, 12, 130, 94, 124, 111, 167, 128, 49, 102, 144, 155, 14]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23288,
+                    "profitSum": 31879,
+                    "objective": 8591
+                },
+                "runtimeNanos": 2205390200,
+                "iterationCount": 410
+            }
+        },
+        {
+            "algorithmName": "LNSa",
+            "objectiveStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "LNSa",
+                "runsCount": 20,
+                "minObjective": 7868,
+                "maxObjective": 8530,
+                "avgObjective": 8284.8
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "LNSa",
+                "runsCount": 20,
+                "minRuntimeNanos": 2203637800,
+                "maxRuntimeNanos": 2212485900,
+                "avgRuntimeNanos": 2.207114635E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPA",
+                "algorithmName": "LNSa",
+                "runsCount": 20,
+                "minIterationCount": 360,
+                "maxIterationCount": 510,
+                "avgIterationCount": 456.2
+            },
+            "bestExecutionResult": {
+                "algorithmName": "LNSa",
+                "solution": {
+                    "instanceName": "TSPA",
+                    "startVertexId": 22,
+                    "cycle": [169, 91, 179, 145, 78, 168, 157, 188, 85, 31, 13, 56, 113, 171, 88, 16, 25, 44, 120, 82, 2, 87, 125, 74, 152, 1, 150, 101, 97, 26, 100, 19, 189, 99, 121, 182, 136, 53, 158, 180, 173, 6, 194, 161, 162, 72, 109, 51, 66, 141, 60, 118, 59, 116, 65, 47, 105, 77, 131, 149, 24, 29, 156, 126, 112, 4, 84, 11, 166, 28, 184, 190, 10, 177, 104, 147, 54, 30, 48, 160, 192, 181, 103, 146, 195, 159, 193, 41, 96, 115, 198, 46, 68, 139, 191, 110, 163, 69, 108, 67, 36, 140, 93, 117, 170, 0, 153, 183, 89, 76, 23, 186, 114, 64, 15, 61, 62, 9, 33, 37, 148, 12, 130, 94, 124, 111, 167, 128, 49, 102, 155, 144, 14, 138, 32, 3, 178, 106, 185, 40, 119, 8, 165, 39, 95, 7, 164, 58, 71, 27, 107, 90, 174, 187, 81, 196]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23407,
+                    "profitSum": 31937,
+                    "objective": 8530
+                },
+                "runtimeNanos": 2204725700,
+                "iterationCount": 510
+            }
+        }
+    ]
+}

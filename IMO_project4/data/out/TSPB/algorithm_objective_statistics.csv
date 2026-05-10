@@ -1,0 +1,5 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPB,MSLS,20,19193.1,18842,19678
+TSPB,ILS,20,20059.0,19644,20213
+TSPB,LNS,20,19580.0,19251,19776
+TSPB,LNSa,20,19596.65,19330,19832

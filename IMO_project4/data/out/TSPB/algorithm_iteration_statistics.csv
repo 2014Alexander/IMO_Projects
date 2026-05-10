@@ -1,0 +1,5 @@
+instanceName,algorithmName,runsCount,avgIterationCount,minIterationCount,maxIterationCount
+TSPB,MSLS,20,200.0,200,200
+TSPB,ILS,20,625.55,465,699
+TSPB,LNS,20,549.75,306,694
+TSPB,LNSa,20,633.7,444,717

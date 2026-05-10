@@ -1,0 +1,5 @@
+instanceName,algorithmName,runsCount,avgObjective,minObjective,maxObjective
+TSPA,MSLS,20,7576.55,7304,7967
+TSPA,ILS,20,8279.1,7552,8624
+TSPA,LNS,20,8332.45,8082,8591
+TSPA,LNSa,20,8284.8,7868,8530

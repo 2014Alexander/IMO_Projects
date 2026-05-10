@@ -1,0 +1,231 @@
+{
+    "instanceName": "TSPB",
+    "parameters": [
+        {
+            "name": "runsCount",
+            "value": "20"
+        },
+        {
+            "name": "mslsStartsCount",
+            "value": "200"
+        },
+        {
+            "name": "mslsAverageRuntimeNanos",
+            "value": "2.667372775E9"
+        },
+        {
+            "name": "timedAlgorithmsLimitNanos",
+            "value": "2667372775"
+        },
+        {
+            "name": "localSearch",
+            "value": "SteepestLocalSearchWithCandidateMoves"
+        },
+        {
+            "name": "candidateEdgesCount",
+            "value": "10"
+        },
+        {
+            "name": "ilsPerturbation",
+            "value": "RandomSwapEdgesPerturbation"
+        },
+        {
+            "name": "ilsPerturbationMoves",
+            "value": "30"
+        },
+        {
+            "name": "lnsDestroy",
+            "value": "SegmentDestroyOperator"
+        },
+        {
+            "name": "lnsDestroyRatio",
+            "value": "0.4"
+        },
+        {
+            "name": "lnsSegmentsCount",
+            "value": "5"
+        },
+        {
+            "name": "lnsSegmentCandidateListSize",
+            "value": "15"
+        },
+        {
+            "name": "repair",
+            "value": "TwoRegretRepairOperator"
+        },
+        {
+            "name": "repairFinalImprover",
+            "value": "PhaseTwoDelete"
+        }
+    ],
+    "algorithmSummaries": [
+        {
+            "algorithmName": "MSLS",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "MSLS",
+                "runsCount": 20,
+                "minObjective": 18842,
+                "maxObjective": 19678,
+                "avgObjective": 19193.1
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "MSLS",
+                "runsCount": 20,
+                "minRuntimeNanos": 2350755400,
+                "maxRuntimeNanos": 3152980200,
+                "avgRuntimeNanos": 2.667372775E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "MSLS",
+                "runsCount": 20,
+                "minIterationCount": 200,
+                "maxIterationCount": 200,
+                "avgIterationCount": 200.0
+            },
+            "bestExecutionResult": {
+                "algorithmName": "MSLS",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 167,
+                    "cycle": [167, 189, 69, 109, 29, 39, 12, 0, 35, 37, 111, 41, 119, 159, 143, 106, 124, 128, 62, 18, 55, 34, 170, 152, 53, 174, 183, 140, 199, 4, 149, 101, 28, 59, 20, 23, 60, 148, 47, 154, 94, 66, 57, 172, 52, 179, 22, 185, 95, 110, 86, 166, 194, 88, 176, 180, 26, 103, 89, 127, 165, 163, 186, 153, 81, 77, 58, 82, 87, 91, 79, 61, 7, 177, 123, 5, 45, 142, 78, 175, 162, 46, 80, 190, 105, 136, 73, 164, 31, 54, 151, 193, 117, 198, 30, 42, 156, 24, 1, 197, 16, 27, 38, 102, 63, 100, 17, 44, 133, 10, 178, 90, 191, 71, 67, 120, 125, 51, 98, 116, 121, 112, 19, 158, 25, 171, 157, 104, 8, 68, 56, 144, 160, 33, 49, 11, 138, 182, 139, 2, 85, 192, 150, 6, 188, 65, 169, 132, 126, 13, 145, 15, 3, 161, 70, 84, 155, 184]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23904,
+                    "profitSum": 43582,
+                    "objective": 19678
+                },
+                "runtimeNanos": 2513131300,
+                "iterationCount": 200
+            }
+        },
+        {
+            "algorithmName": "ILS",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "ILS",
+                "runsCount": 20,
+                "minObjective": 19644,
+                "maxObjective": 20213,
+                "avgObjective": 20059.0
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "ILS",
+                "runsCount": 20,
+                "minRuntimeNanos": 2667557700,
+                "maxRuntimeNanos": 2693850900,
+                "avgRuntimeNanos": 2.6712982E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "ILS",
+                "runsCount": 20,
+                "minIterationCount": 465,
+                "maxIterationCount": 699,
+                "avgIterationCount": 625.55
+            },
+            "bestExecutionResult": {
+                "algorithmName": "ILS",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 39,
+                    "cycle": [39, 160, 33, 49, 11, 138, 182, 139, 2, 85, 98, 51, 120, 67, 71, 191, 90, 125, 131, 19, 112, 121, 116, 158, 25, 123, 177, 171, 157, 104, 56, 8, 68, 111, 41, 119, 159, 143, 106, 124, 128, 62, 18, 55, 174, 183, 140, 199, 4, 149, 101, 28, 59, 20, 23, 60, 148, 47, 154, 94, 66, 57, 172, 52, 179, 22, 185, 95, 110, 86, 166, 194, 88, 176, 180, 26, 103, 89, 127, 165, 163, 186, 153, 81, 77, 58, 82, 87, 91, 79, 61, 7, 5, 45, 142, 78, 175, 162, 46, 80, 190, 105, 136, 73, 164, 193, 31, 54, 151, 117, 198, 30, 42, 156, 24, 1, 197, 16, 27, 38, 102, 63, 100, 17, 44, 133, 10, 178, 115, 147, 192, 150, 6, 188, 65, 169, 132, 13, 126, 195, 145, 15, 3, 161, 70, 84, 155, 184, 167, 189, 69, 109, 35, 0, 12, 29]
+                },
+                "solutionMetrics": {
+                    "tourLength": 23116,
+                    "profitSum": 43329,
+                    "objective": 20213
+                },
+                "runtimeNanos": 2673158700,
+                "iterationCount": 668
+            }
+        },
+        {
+            "algorithmName": "LNS",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "LNS",
+                "runsCount": 20,
+                "minObjective": 19251,
+                "maxObjective": 19776,
+                "avgObjective": 19580.0
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "LNS",
+                "runsCount": 20,
+                "minRuntimeNanos": 2667664100,
+                "maxRuntimeNanos": 2684137700,
+                "avgRuntimeNanos": 2.67127296E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "LNS",
+                "runsCount": 20,
+                "minIterationCount": 306,
+                "maxIterationCount": 694,
+                "avgIterationCount": 549.75
+            },
+            "bestExecutionResult": {
+                "algorithmName": "LNS",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 191,
+                    "cycle": [54, 31, 193, 164, 73, 136, 105, 190, 80, 46, 162, 45, 142, 175, 78, 5, 7, 61, 79, 91, 141, 97, 77, 58, 87, 82, 50, 14, 41, 143, 159, 119, 153, 186, 163, 89, 165, 127, 137, 114, 103, 26, 180, 176, 88, 194, 166, 86, 110, 128, 124, 62, 18, 55, 174, 183, 140, 199, 9, 95, 130, 22, 179, 52, 172, 57, 66, 94, 154, 47, 148, 60, 23, 20, 59, 28, 101, 149, 4, 53, 184, 167, 189, 155, 84, 70, 161, 3, 15, 145, 195, 126, 13, 132, 169, 65, 188, 6, 150, 192, 85, 2, 139, 182, 138, 11, 49, 33, 160, 39, 29, 12, 0, 109, 35, 37, 111, 68, 8, 56, 104, 157, 171, 177, 123, 25, 158, 19, 112, 121, 116, 98, 51, 120, 67, 71, 191, 125, 90, 178, 10, 133, 44, 17, 100, 63, 102, 38, 27, 16, 197, 1, 24, 156, 42, 30, 198, 117, 151]
+                },
+                "solutionMetrics": {
+                    "tourLength": 24286,
+                    "profitSum": 44062,
+                    "objective": 19776
+                },
+                "runtimeNanos": 2668608800,
+                "iterationCount": 588
+            }
+        },
+        {
+            "algorithmName": "LNSa",
+            "objectiveStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "LNSa",
+                "runsCount": 20,
+                "minObjective": 19330,
+                "maxObjective": 19832,
+                "avgObjective": 19596.65
+            },
+            "runtimeStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "LNSa",
+                "runsCount": 20,
+                "minRuntimeNanos": 2667647400,
+                "maxRuntimeNanos": 2675983800,
+                "avgRuntimeNanos": 2.66985004E9
+            },
+            "iterationStatistics": {
+                "instanceName": "TSPB",
+                "algorithmName": "LNSa",
+                "runsCount": 20,
+                "minIterationCount": 444,
+                "maxIterationCount": 717,
+                "avgIterationCount": 633.7
+            },
+            "bestExecutionResult": {
+                "algorithmName": "LNSa",
+                "solution": {
+                    "instanceName": "TSPB",
+                    "startVertexId": 127,
+                    "cycle": [8, 104, 56, 33, 49, 11, 138, 182, 157, 171, 177, 123, 25, 158, 116, 121, 112, 19, 131, 125, 90, 191, 71, 67, 120, 51, 98, 118, 74, 85, 2, 43, 168, 195, 126, 13, 145, 15, 3, 70, 161, 132, 169, 65, 188, 6, 150, 192, 147, 115, 178, 10, 133, 44, 17, 100, 63, 96, 32, 102, 38, 27, 16, 197, 1, 24, 156, 42, 30, 198, 117, 151, 54, 31, 193, 164, 73, 136, 105, 190, 80, 46, 162, 175, 78, 142, 45, 5, 7, 61, 79, 91, 141, 97, 77, 58, 87, 82, 68, 111, 41, 143, 159, 119, 153, 186, 163, 89, 165, 127, 137, 114, 103, 26, 180, 176, 88, 194, 166, 86, 110, 128, 124, 62, 18, 55, 174, 183, 140, 199, 9, 95, 130, 22, 179, 52, 172, 57, 66, 94, 154, 47, 148, 60, 23, 20, 59, 28, 101, 149, 4, 53, 184, 155, 167, 189, 69, 109, 35, 0, 12, 29, 39, 160, 144]
+                },
+                "solutionMetrics": {
+                    "tourLength": 24989,
+                    "profitSum": 44821,
+                    "objective": 19832
+                },
+                "runtimeNanos": 2670665000,
+                "iterationCount": 691
+            }
+        }
+    ]
+}
