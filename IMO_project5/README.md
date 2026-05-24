@@ -65,8 +65,8 @@ Pseudokody pokazują główną logikę nowych części zadań 5 i 6. Nie przepis
 Wszystkie metody korzystają z tej samej funkcji celu:
 
 ```text
-f(C) = \mbox{suma profitów odwiedzonych wierzchołków} -
-       \mbox{długość zamkniętego cyklu}
+f(C) = suma profitów odwiedzonych wierzchołków -
+       długość zamkniętego cyklu
 ```
 
 Pseudokody są zapisane dla jednej ustalonej instancji problemu. Instancja zawiera macierz odległości, profity wierzchołków i liczbę wierzchołków. Dla czytelności `instance` występuje tylko w procedurach najwyższego poziomu, a w pomocniczych procedurach jest traktowana jako wspólny kontekst.
@@ -81,17 +81,17 @@ Pseudokody są zapisane dla jednej ustalonej instancji problemu. Instancja zawie
 > Obejmuje ruchy wstawiania, usuwania oraz odwracania fragmentu cyklu.
 
 ```text
-GenerateLocalOptima(\pvar{instance}, \pvar{localOptimaCount} = 1000)
-    \pvar{localOptima} \(\leftarrow\) pusta lista
-    \pvar{runs} \(\leftarrow\) przygotuj \pvar{localOptimaCount} konfiguracji uruchomień
+GenerateLocalOptima(instance, localOptimaCount = 1000)
+    localOptima <- pusta lista
+    runs <- przygotuj localOptimaCount konfiguracji uruchomień
 
-    dla każdej konfiguracji \pvar{run} z \pvar{runs}
-        \pvar{x} \(\leftarrow\) RandomSolution(\pvar{run.runSeed}).solve(\pvar{instance}, \pvar{run.startVertexId})
-        \pvar{x} \(\leftarrow\) GreedyLocalSearch(SWAP_EDGES, \pvar{run.runSeed}).improve(\pvar{x})
-        \pvar{objective} \(\leftarrow f(\pvar{x})\)
-        dodaj \((\pvar{x}, \pvar{objective}, \pvar{run.startVertexId}, \pvar{run.runSeed})\) do \pvar{localOptima}
+    dla każdej konfiguracji run z runs
+        x <- RandomSolution(run.runSeed).solve(instance, run.startVertexId)
+        x <- GreedyLocalSearch(SWAP_EDGES, run.runSeed).improve(x)
+        objective <- f(x)
+        dodaj (x, objective, run.startVertexId, run.runSeed) do localOptima
 
-    zwróć \pvar{localOptima}
+    zwróć localOptima
 ```
 
 #### Wybór bardzo dobrego rozwiązania B
@@ -101,25 +101,25 @@ GenerateLocalOptima(\pvar{instance}, \pvar{localOptimaCount} = 1000)
 > Uruchamia MSLS i z jego średniego czasu wyznacza limit dla ILS, LNS i LNSa.
 
 ```text
-SelectVeryGoodSolution(\pvar{instance})
-    \pvar{runs} \(\leftarrow\) przygotuj 20 konfiguracji uruchomień jak w lab4
+SelectVeryGoodSolution(instance)
+    runs <- przygotuj 20 konfiguracji uruchomień jak w lab4
 
-    \pvar{mslsResults} \(\leftarrow\) uruchom MSLS dla wszystkich \pvar{runs}
-    \pvar{mslsAverageTime} \(\leftarrow\) średni czas działania MSLS
-    \pvar{best} \(\leftarrow\) najlepszy wynik z \pvar{mslsResults}
+    mslsResults <- uruchom MSLS dla wszystkich runs
+    mslsAverageTime <- średni czas działania MSLS
+    best <- najlepszy wynik z mslsResults
 
-    dla każdej metody \pvar{method} z listy ILS, LNS, LNSa
-        \pvar{results} \(\leftarrow\) uruchom \pvar{method} dla wszystkich \pvar{runs}
-                    z limitem czasu \pvar{mslsAverageTime}
-        \pvar{candidate} \(\leftarrow\) najlepszy wynik z \pvar{results}
+    dla każdej metody method z listy ILS, LNS, LNSa
+        results <- uruchom method dla wszystkich runs
+                    z limitem czasu mslsAverageTime
+        candidate <- najlepszy wynik z results
 
-        jeżeli \(f(\pvar{candidate}) > f(\pvar{best})\)
-            \pvar{best} \(\leftarrow\) \pvar{candidate}
+        jeżeli f(candidate) > f(best)
+            best <- candidate
 
-    \pvar{B} \(\leftarrow\) \pvar{best}
-    zapisz nazwę metody, seed, startVertexId i objective rozwiązania \pvar{B}
+    B <- best
+    zapisz nazwę metody, seed, startVertexId i objective rozwiązania B
 
-    zwróć \pvar{B}
+    zwróć B
 ```
 
 #### Cechy rozwiązania
@@ -130,19 +130,19 @@ SelectVeryGoodSolution(\pvar{instance})
 > Uwzględnia przejście z ostatniego wierzchołka do pierwszego jako zwykłą krawędź cyklu.
 
 ```text
-SolutionFeatures(\pvar{cycle})
-    \pvar{selectedVertices} \(\leftarrow\) tablica obecności wierzchołków w \pvar{cycle}
-    \pvar{edges} \(\leftarrow\) pusta tablica krawędzi
+SolutionFeatures(cycle)
+    selectedVertices <- tablica obecności wierzchołków w cycle
+    edges <- pusta tablica krawędzi
 
-    dla każdej pozycji w \pvar{cycle}
-        \pvar{a} \(\leftarrow\) aktualny wierzchołek
-        \pvar{b} \(\leftarrow\) następny wierzchołek w \pvar{cycle},
+    dla każdej pozycji w cycle
+        a <- aktualny wierzchołek
+        b <- następny wierzchołek w cycle,
              z przejściem z końca na początek
-        dodaj krawędź \((\min(\pvar{a}, \pvar{b}), \max(\pvar{a}, \pvar{b}))\) do \pvar{edges}
+        dodaj krawędź (min(a, b), max(a, b)) do edges
 
-    posortuj \pvar{edges} i usuń powtórzenia
+    posortuj edges i usuń powtórzenia
 
-    zwróć \((\pvar{selectedVertices}, \pvar{edges})\)
+    zwróć (selectedVertices, edges)
 ```
 
 #### Podobieństwo po wierzchołkach
@@ -150,46 +150,46 @@ SolutionFeatures(\pvar{cycle})
 > Liczy, ile wybranych wierzchołków występuje jednocześnie w obu rozwiązaniach.
 
 ```text
-CommonVerticesSimilarity(\pvar{featuresA}, \pvar{featuresB})
-    \pvar{count} \(\leftarrow 0\)
+CommonVerticesSimilarity(featuresA, featuresB)
+    count <- 0
 
-    dla każdego wierzchołka \(v\) instancji
-        jeżeli \(v\) jest wybrany w \pvar{featuresA} oraz w \pvar{featuresB}
-            \pvar{count} \(\leftarrow \pvar{count} + 1\)
+    dla każdego wierzchołka v instancji
+        jeżeli v jest wybrany w featuresA oraz w featuresB
+            count <- count + 1
 
-    zwróć \pvar{count}
+    zwróć count
 ```
 
 #### Podobieństwo po krawędziach
 
 > Liczy, ile krawędzi cyklu występuje jednocześnie w obu rozwiązaniach.
-> Zapisuje każdą krawędź jako nieskierowaną parę \((\min(a,b), \max(a,b))\).
+> Zapisuje każdą krawędź jako nieskierowaną parę (min(a,b), max(a,b)).
 > Wykorzystuje posortowanie list krawędzi zamiast porównywania każdej krawędzi z każdą.
 > Przesuwa równolegle oba wskaźniki po listach krawędzi.
 > Rozpoznaje równe aktualne krawędzie jako wspólną krawędź.
 > Pomija mniejszą aktualną krawędź, ponieważ nie może pojawić się później w drugiej liście.
 
 ```text
-CommonEdgesSimilarity(\pvar{featuresA}, \pvar{featuresB})
-    \pvar{edgesA} \(\leftarrow\) posortowane krawędzie nieskierowane rozwiązania A
-    \pvar{edgesB} \(\leftarrow\) posortowane krawędzie nieskierowane rozwiązania B
-    \pvar{count} \(\leftarrow 0\)
+CommonEdgesSimilarity(featuresA, featuresB)
+    edgesA <- posortowane krawędzie nieskierowane rozwiązania A
+    edgesB <- posortowane krawędzie nieskierowane rozwiązania B
+    count <- 0
 
     dopóki w obu listach są jeszcze nieprzejrzane krawędzie
-        \pvar{edgeA} \(\leftarrow\) aktualna nieprzejrzana krawędź z \pvar{edgesA}
-        \pvar{edgeB} \(\leftarrow\) aktualna nieprzejrzana krawędź z \pvar{edgesB}
+        edgeA <- aktualna nieprzejrzana krawędź z edgesA
+        edgeB <- aktualna nieprzejrzana krawędź z edgesB
 
-        jeżeli \(\pvar{edgeA} = \pvar{edgeB}\)
-            \pvar{count} \(\leftarrow \pvar{count} + 1\)
+        jeżeli edgeA = edgeB
+            count <- count + 1
             przejdź do następnej krawędzi w obu listach
 
-        w przeciwnym razie jeżeli \(\pvar{edgeA} < \pvar{edgeB}\)
-            przejdź do następnej krawędzi w \pvar{edgesA}
+        w przeciwnym razie jeżeli edgeA < edgeB
+            przejdź do następnej krawędzi w edgesA
 
         w przeciwnym razie
-            przejdź do następnej krawędzi w \pvar{edgesB}
+            przejdź do następnej krawędzi w edgesB
 
-    zwróć \pvar{count}
+    zwróć count
 ```
 
 #### Liczenie punktów do wykresów i korelacji
@@ -200,38 +200,38 @@ CommonEdgesSimilarity(\pvar{featuresA}, \pvar{featuresB})
 > Liczy korelacje wyłącznie dla zbioru lokalnych optimów.
 
 ```text
-Lab5Experiment(\pvar{instance})
-    \pvar{B} \(\leftarrow\) SelectVeryGoodSolution(\pvar{instance})
-    \pvar{localOptima} \(\leftarrow\) GenerateLocalOptima(\pvar{instance}, 1000)
+Lab5Experiment(instance)
+    B <- SelectVeryGoodSolution(instance)
+    localOptima <- GenerateLocalOptima(instance, 1000)
 
-    \pvar{bestFeatures} \(\leftarrow\) SolutionFeatures(\pvar{B.cycle})
-    dla każdego lokalnego optimum \(\pvar{x_i}\)
-        \pvar{features[i]} \(\leftarrow\) SolutionFeatures(\pvar{x_i.cycle})
+    bestFeatures <- SolutionFeatures(B.cycle)
+    dla każdego lokalnego optimum x_i
+        features[i] <- SolutionFeatures(x_i.cycle)
 
-    dla każdego lokalnego optimum \(\pvar{x_i}\)
-        \pvar{similarityVerticesToBest[i]} \(\leftarrow\)
-            CommonVerticesSimilarity(\pvar{features[i]}, \pvar{bestFeatures})
-        \pvar{similarityEdgesToBest[i]} \(\leftarrow\)
-            CommonEdgesSimilarity(\pvar{features[i]}, \pvar{bestFeatures})
+    dla każdego lokalnego optimum x_i
+        similarityVerticesToBest[i] <-
+            CommonVerticesSimilarity(features[i], bestFeatures)
+        similarityEdgesToBest[i] <-
+            CommonEdgesSimilarity(features[i], bestFeatures)
 
-    dla każdej pary lokalnych optimów \((\pvar{x_i}, \pvar{x_j})\), gdzie \(i < j\)
-        \pvar{vertices} \(\leftarrow\) CommonVerticesSimilarity(\pvar{features[i]}, \pvar{features[j]})
-        \pvar{edges} \(\leftarrow\) CommonEdgesSimilarity(\pvar{features[i]}, \pvar{features[j]})
+    dla każdej pary lokalnych optimów (x_i, x_j), gdzie i < j
+        vertices <- CommonVerticesSimilarity(features[i], features[j])
+        edges <- CommonEdgesSimilarity(features[i], features[j])
 
-        dodaj \pvar{vertices} do sumy podobieństwa wierzchołków dla \(i\) oraz \(j\)
-        dodaj \pvar{edges} do sumy podobieństwa krawędzi dla \(i\) oraz \(j\)
+        dodaj vertices do sumy podobieństwa wierzchołków dla i oraz j
+        dodaj edges do sumy podobieństwa krawędzi dla i oraz j
 
-    dla każdego lokalnego optimum \(\pvar{x_i}\)
-        \pvar{avgVerticesToOthers[i]} \(\leftarrow \pvar{sumVertices[i]} / 999\)
-        \pvar{avgEdgesToOthers[i]} \(\leftarrow \pvar{sumEdges[i]} / 999\)
+    dla każdego lokalnego optimum x_i
+        avgVerticesToOthers[i] <- sumVertices[i] / 999
+        avgEdgesToOthers[i] <- sumEdges[i] / 999
 
     policz korelacje Pearsona:
-        \(f(\pvar{x_i})\) z \pvar{similarityVerticesToBest[i]}
-        \(f(\pvar{x_i})\) z \pvar{similarityEdgesToBest[i]}
-        \(f(\pvar{x_i})\) z \pvar{avgVerticesToOthers[i]}
-        \(f(\pvar{x_i})\) z \pvar{avgEdgesToOthers[i]}
+        f(x_i) z similarityVerticesToBest[i]
+        f(x_i) z similarityEdgesToBest[i]
+        f(x_i) z avgVerticesToOthers[i]
+        f(x_i) z avgEdgesToOthers[i]
 
-    zapisz punkty do wykresów, korelacje i metadane rozwiązania \pvar{B}
+    zapisz punkty do wykresów, korelacje i metadane rozwiązania B
 ```
 
 Rozwiązanie `B` służy tylko jako punkt odniesienia przy liczeniu podobieństwa. Nie jest dodawane do zbioru 1000 lokalnych optimów i nie bierze udziału w średnim podobieństwie między lokalnymi optimami.
@@ -246,28 +246,28 @@ Rozwiązanie `B` służy tylko jako punkt odniesienia przy liczeniu podobieństw
 > Używa tej samej polityki różnorodności przy inicjalizacji i przy późniejszym dodawaniu potomków.
 
 ```text
-PopulationInitializer(\pvar{instance}, \pvar{startVertexId}, \pvar{populationSize} = 20, \pvar{runSeed})
-    \pvar{randomSolution} \(\leftarrow\) RandomSolution(\pvar{runSeed})
-    \pvar{population} \(\leftarrow\) pusta populacja elitarna
-    \pvar{attempts} \(\leftarrow 0\)
-    \pvar{maxAttempts} \(\leftarrow \pvar{populationSize} \cdot 1000\)
+PopulationInitializer(instance, startVertexId, populationSize = 20, runSeed)
+    randomSolution <- RandomSolution(runSeed)
+    population <- pusta populacja elitarna
+    attempts <- 0
+    maxAttempts <- populationSize * 1000
 
-    dopóki \(\pvar{population.size} < \pvar{populationSize}\) oraz \(\pvar{attempts} < \pvar{maxAttempts}\)
-        \pvar{currentStart} \(\leftarrow (\pvar{startVertexId} + \pvar{attempts}) \bmod \pvar{instance.size}\)
-        \pvar{x} \(\leftarrow\) \pvar{randomSolution}.solve(\pvar{instance}, \pvar{currentStart})
-        \pvar{x} \(\leftarrow\) SteepestLocalSearchWithCandidateMoves(\pvar{x})
-        \pvar{objective} \(\leftarrow f(\pvar{x})\)
-        \pvar{features} \(\leftarrow\) SolutionFeatures(\pvar{x})
+    dopóki population.size < populationSize oraz attempts < maxAttempts
+        currentStart <- (startVertexId + attempts) mod instance.size
+        x <- randomSolution.solve(instance, currentStart)
+        x <- SteepestLocalSearchWithCandidateMoves(x)
+        objective <- f(x)
+        features <- SolutionFeatures(x)
 
-        jeżeli \pvar{x} jest różne od obecnej populacji według PopulationDiversityPolicy
-            dodaj osobnika \((\pvar{x}, \pvar{objective}, \pvar{features})\) do \pvar{population}
+        jeżeli x jest różne od obecnej populacji według PopulationDiversityPolicy
+            dodaj osobnika (x, objective, features) do population
 
-        \pvar{attempts} \(\leftarrow \pvar{attempts} + 1\)
+        attempts <- attempts + 1
 
-    jeżeli \(\pvar{population.size} < \pvar{populationSize}\)
+    jeżeli population.size < populationSize
         zgłoś błąd inicjalizacji populacji
 
-    zwróć \pvar{population}
+    zwróć population
 ```
 
 #### Hybrydowy algorytm ewolucyjny HAE
@@ -280,38 +280,39 @@ PopulationInitializer(\pvar{instance}, \pvar{startVertexId}, \pvar{populationSiz
 > Obejmuje limitem czasu także inicjalizację populacji.
 
 ```text
-HAE(\pvar{instance}, \pvar{startVertexId}, \pvar{runSeed}, \pvar{timeLimit},
-    \pvar{recombinationOperator}, \pvar{useLocalSearch})
+HAE(instance, startVertexId, runSeed, timeLimit,
+    recombinationOperator, useLocalSearch)
 
-    \pvar{random} \(\leftarrow\) Random(\pvar{runSeed})
-    \pvar{endTime} \(\leftarrow\) aktualny czas \(+\ \pvar{timeLimit}\)
-    \pvar{population} \(\leftarrow\) PopulationInitializer(\pvar{instance}, \pvar{startVertexId}, 20, \pvar{runSeed})
-    \pvar{iterations} \(\leftarrow 0\)
+    random <- Random(runSeed)
+    endTime <- aktualny czas + timeLimit
+    population <- PopulationInitializer(instance, startVertexId, 20, runSeed)
+    iterations <- 0
 
-    dopóki aktualny czas \(< \pvar{endTime}\)
-        \pvar{parent1}, \pvar{parent2} \(\leftarrow\) wylosuj dwa różne osobniki z \pvar{population}
+    dopóki aktualny czas < endTime
+        parent1, parent2 <- wylosuj dwa różne osobniki z population
 
-        \pvar{child} \(\leftarrow\) \pvar{recombinationOperator}(\pvar{parent1}, \pvar{parent2}, \pvar{random})
-        \pvar{child} \(\leftarrow\) RepairStage(\pvar{child}, \pvar{parent1}, \pvar{parent2})
+        child <- recombinationOperator(parent1, parent2, random)
+        child <- RepairStage(child, parent1, parent2)
 
-        jeżeli \pvar{useLocalSearch}
-            \pvar{child} \(\leftarrow\) SteepestLocalSearchWithCandidateMoves(\pvar{child})
+        jeżeli useLocalSearch
+            child <- SteepestLocalSearchWithCandidateMoves(child)
 
-        \pvar{childObjective} \(\leftarrow f(\pvar{child})\)
-        \pvar{iterations} \(\leftarrow \pvar{iterations} + 1\)
+        childObjective <- f(child)
+        iterations <- iterations + 1
 
-        jeżeli \pvar{childObjective} nie jest lepszy od najgorszego osobnika w \pvar{population}
-            pomiń \pvar{child}
+        jeżeli childObjective nie jest lepszy od najgorszego osobnika w population
+            pomiń child
         w przeciwnym razie
-            \pvar{childFeatures} \(\leftarrow\) SolutionFeatures(\pvar{child})
-            \pvar{childIndividual} \(\leftarrow (\pvar{child}, \pvar{childObjective}, \pvar{childFeatures})\)
+            childFeatures <- SolutionFeatures(child)
+            childIndividual <- (child, childObjective, childFeatures)
 
-            jeżeli \pvar{childIndividual} jest różny od \pvar{population} według PopulationDiversityPolicy
-                dodaj \pvar{childIndividual} do \pvar{population}
+            jeżeli childIndividual jest różny od population według PopulationDiversityPolicy
+                dodaj childIndividual do population
                 usuń najgorszego osobnika
 
-    zwróć najlepszy osobnik z \pvar{population}
+    zwróć najlepszy osobnik z population
 ```
+
 
 #### Polityka różnorodności populacji
 
@@ -319,9 +320,9 @@ HAE(\pvar{instance}, \pvar{startVertexId}, \pvar{runSeed}, \pvar{timeLimit},
 > Traktuje w podstawowej wersji dwa rozwiązania z tym samym objective jako kopie.
 
 ```text
-ObjectiveDiversityPolicy(\pvar{candidate}, \pvar{population})
-    dla każdego osobnika \pvar{x} w \pvar{population}
-        jeżeli \(f(\pvar{candidate}) = f(\pvar{x})\)
+ObjectiveDiversityPolicy(candidate, population)
+    dla każdego osobnika x w population
+        jeżeli f(candidate) = f(x)
             zwróć false
 
     zwróć true
@@ -335,14 +336,14 @@ ObjectiveDiversityPolicy(\pvar{candidate}, \pvar{population})
 > Wykonuje właściwy repair metodą 2-regret.
 
 ```text
-RepairStage(\pvar{partialChild}, \pvar{parent1}, \pvar{parent2})
-    jeżeli \pvar{partialChild} ma mniej niż 2 wierzchołki
-        uzupełnij \pvar{partialChild} pierwszymi brakującymi wierzchołkami
-        z \pvar{parent1}, a potem z \pvar{parent2}
+RepairStage(partialChild, parent1, parent2)
+    jeżeli partialChild ma mniej niż 2 wierzchołki
+        uzupełnij partialChild pierwszymi brakującymi wierzchołkami
+        z parent1, a potem z parent2
 
-    \pvar{child} \(\leftarrow\) TwoRegretRepairOperator(\pvar{partialChild})
+    child <- TwoRegretRepairOperator(partialChild)
 
-    zwróć \pvar{child}
+    zwróć child
 ```
 
 `TwoRegretRepairOperator` uzupełnia cykl metodą 2-regret i na końcu wykonuje `PhaseTwoDelete`.
@@ -354,22 +355,22 @@ RepairStage(\pvar{partialChild}, \pvar{parent1}, \pvar{parent2})
 > Zachowuje wspólne wierzchołki bez wspólnej krawędzi jako części jednoelementowe.
 
 ```text
-CommonPartsRecombination(\pvar{parent1}, \pvar{parent2})
-    \pvar{commonEdges} \(\leftarrow\) krawędzie \pvar{parent1}, które występują też w \pvar{parent2}
-    \pvar{edgeFragments} \(\leftarrow\) podścieżki zbudowane ze wspólnych krawędzi
+CommonPartsRecombination(parent1, parent2)
+    commonEdges <- krawędzie parent1, które występują też w parent2
+    edgeFragments <- podścieżki zbudowane ze wspólnych krawędzi
 
-    \pvar{used} \(\leftarrow\) wierzchołki należące do \pvar{edgeFragments}
-    \pvar{parts} \(\leftarrow \pvar{edgeFragments}\)
+    used <- wierzchołki należące do edgeFragments
+    parts <- edgeFragments
 
-    dla każdego wspólnego wierzchołka \(v\) rodziców \pvar{parent1} i \pvar{parent2}
-        jeżeli \(v\) nie należy do \pvar{used}
-            dodaj \(v\) jako jednoelementową część do \pvar{parts}
+    dla każdego wspólnego wierzchołka v rodziców parent1 i parent2
+        jeżeli v nie należy do used
+            dodaj v jako jednoelementową część do parts
 
-    losowo ustaw kolejność części w \pvar{parts}
+    losowo ustaw kolejność części w parts
     dla każdej części losowo zdecyduj, czy odwrócić jej kierunek
-    \pvar{child} \(\leftarrow\) połącz części w jeden partial cycle
+    child <- połącz części w jeden partial cycle
 
-    zwróć \pvar{child}
+    zwróć child
 ```
 
 #### Operator 2: wspólne wierzchołki i krawędzie po filtracji
@@ -382,29 +383,29 @@ CommonPartsRecombination(\pvar{parent1}, \pvar{parent2})
 > Zwraca krótką sekwencję jako raw partial cycle dla `RepairStage`, jeżeli po filtracji zostało mniej niż 2 wierzchołki.
 
 ```text
-CommonEdgesAndVerticesRecombination(\pvar{parent1}, \pvar{parent2})
-    \pvar{base} \(\leftarrow\) losowo wybrany rodzic, którego kolejność będzie filtrowana
-    \pvar{filter} \(\leftarrow\) drugi rodzic
+CommonEdgesAndVerticesRecombination(parent1, parent2)
+    base <- losowo wybrany rodzic, którego kolejność będzie filtrowana
+    filter <- drugi rodzic
 
-    \pvar{filtered} \(\leftarrow\) pusta sekwencja
-    dla każdego wierzchołka \(v\) w cyklu \pvar{base}
-        jeżeli \(v\) występuje w \pvar{filter}
-            dodaj \(v\) do \pvar{filtered}
+    filtered <- pusta sekwencja
+    dla każdego wierzchołka v w cyklu base
+        jeżeli v występuje w filter
+            dodaj v do filtered
 
-    jeżeli \pvar{filtered} ma mniej niż 2 wierzchołki
-        zwróć \pvar{filtered} jako partial cycle
+    jeżeli filtered ma mniej niż 2 wierzchołki
+        zwróć filtered jako partial cycle
 
-    \pvar{retainedEdges} \(\leftarrow\) pusta tablica zachowanych połączeń
-    dla każdej krawędzi \(\pvar{a}-\pvar{b}\) w cyklu utworzonym przez \pvar{filtered}
-        jeżeli krawędź \(\pvar{a}-\pvar{b}\) występuje w \pvar{filter}
-            oznacz połączenie \(\pvar{a}-\pvar{b}\) jako zachowane
+    retainedEdges <- pusta tablica zachowanych połączeń
+    dla każdej krawędzi a-b w cyklu utworzonym przez filtered
+        jeżeli krawędź a-b występuje w filter
+            oznacz połączenie a-b jako zachowane
 
-    \pvar{fragments} \(\leftarrow\) podścieżki zbudowane z zachowanych połączeń
-    losowo ustaw kolejność \pvar{fragments}
+    fragments <- podścieżki zbudowane z zachowanych połączeń
+    losowo ustaw kolejność fragments
     dla każdego fragmentu losowo zdecyduj, czy odwrócić jego kierunek
-    \pvar{child} \(\leftarrow\) połącz \pvar{fragments} w jeden partial cycle
+    child <- połącz fragments w jeden partial cycle
 
-    zwróć \pvar{child}
+    zwróć child
 ```
 
 #### Operator 3: wspólne wierzchołki
@@ -414,16 +415,16 @@ CommonEdgesAndVerticesRecombination(\pvar{parent1}, \pvar{parent2})
 > Nie usuwa krawędzi tylko dlatego, że nie występowały w drugim rodzicu.
 
 ```text
-CommonVerticesRecombination(\pvar{parent1}, \pvar{parent2})
-    \pvar{base} \(\leftarrow\) losowo wybrany rodzic z pary \pvar{parent1}, \pvar{parent2}
-    \pvar{filter} \(\leftarrow\) drugi rodzic
+CommonVerticesRecombination(parent1, parent2)
+    base <- losowo wybrany rodzic z pary parent1, parent2
+    filter <- drugi rodzic
 
-    \pvar{child} \(\leftarrow\) pusty partial cycle
-    dla każdego wierzchołka \(v\) w cyklu \pvar{base}
-        jeżeli \(v\) występuje w \pvar{filter}
-            dodaj \(v\) do \pvar{child}
+    child <- pusty partial cycle
+    dla każdego wierzchołka v w cyklu base
+        jeżeli v występuje w filter
+            dodaj v do child
 
-    zwróć \pvar{child}
+    zwróć child
 ```
 
 Po usunięciu pozostałych wierzchołków sąsiedzi w przefiltrowanej sekwencji stają się połączeni. To odróżnia operator 3 od samego wyboru zbioru wspólnych wierzchołków.
@@ -446,11 +447,11 @@ We wszystkich wariantach populacja początkowa jest poprawiana lokalnym przeszuk
 > Wykonuje konstrukcję 2-regret z końcowym usuwaniem nieopłacalnych wierzchołków.
 
 ```text
-2REGRET_P2D(\pvar{instance}, \pvar{startVertexId})
-    \pvar{x} \(\leftarrow\) TwoRegretCost(\pvar{instance}, \pvar{startVertexId})
-    \pvar{x} \(\leftarrow\) PhaseTwoDelete(\pvar{x})
+2REGRET_P2D(instance, startVertexId)
+    x <- TwoRegretCost(instance, startVertexId)
+    x <- PhaseTwoDelete(x)
 
-    zwróć \pvar{x}
+    zwróć x
 ```
 
 > Podaje wynik pojedynczego bazowego lokalnego przeszukiwania.
@@ -458,11 +459,11 @@ We wszystkich wariantach populacja początkowa jest poprawiana lokalnym przeszuk
 > Używa tego samego `SteepestLocalSearchWithCandidateMoves` co MSLS, ILS, LNS i HAE.
 
 ```text
-BASE_LS(\pvar{instance}, \pvar{startVertexId}, \pvar{runSeed})
-    \pvar{x} \(\leftarrow\) RandomSolution(\pvar{runSeed}).solve(\pvar{instance}, \pvar{startVertexId})
-    \pvar{x} \(\leftarrow\) SteepestLocalSearchWithCandidateMoves(\pvar{x})
+BASE_LS(instance, startVertexId, runSeed)
+    x <- RandomSolution(runSeed).solve(instance, startVertexId)
+    x <- SteepestLocalSearchWithCandidateMoves(x)
 
-    zwróć \pvar{x}
+    zwróć x
 ```
 
 ## 4. Sposób przeprowadzenia eksperymentu
@@ -528,25 +529,29 @@ Wyniki głównego porównania i wyniki referencyjne są rozdzielone w tabelach.
 
 ## 7. Wnioski
 
-W zadaniu 5 na obu instancjach otrzymano dodatnią korelację między wartością funkcji celu a podobieństwem lokalnych optimów. Lepsze lokalne optima częściej miały wspólne elementy z bardzo dobrym rozwiązaniem oraz z innymi lokalnymi optimami. Oznacza to, że dobre rozwiązania nie były całkowicie rozrzucone losowo po przestrzeni rozwiązań, tylko zaczynały tworzyć podobne struktury.
+W zadaniu 5 dla obu instancji otrzymano dodatnią korelację między wartością funkcji celu a podobieństwem lokalnych optimów. Oznacza to, że lepsze lokalne optima częściej miały wspólne wierzchołki i krawędzie z bardzo dobrym rozwiązaniem B oraz z innymi lokalnymi optimami. Dobre rozwiązania nie były więc całkowicie rozproszone po przestrzeni rozwiązań, tylko tworzyły zauważalne skupienia podobnych struktur.
 
-Zależność była wyraźnie silniejsza dla instancji TSPB niż dla TSPA. Dla TSPB korelacje mieściły się w zakresie od około 0.79 do 0.87, a dla TSPA od około 0.53 do 0.66. Można to odczytać tak, że na TSPB dobre lokalne optima skupiają się wokół bardziej podobnego układu wierzchołków i krawędzi. Na TSPA istnieje więcej różnych lokalnych optimów o dobrej jakości, ale mniej podobnej strukturze.
+Zależność była znacznie silniejsza dla TSPB niż dla TSPA. Dla TSPB korelacje wynosiły od 0.793 do 0.870, a dla TSPA od 0.532 do 0.662. Można to interpretować tak, że w TSPB dobre lokalne optima były bardziej podobne do siebie i do rozwiązania referencyjnego. W TSPA dobre wyniki można było uzyskać przy większej różnorodności cykli.
 
-W obu instancjach podobieństwo po krawędziach dawało silniejszy sygnał niż podobieństwo po samych wierzchołkach. Jest to zgodne z charakterem problemu: jakość rozwiązania zależy nie tylko od tego, które wierzchołki zostaną wybrane, ale też od tego, jak zostaną połączone w zamkniętym cyklu. Dwa rozwiązania mogą odwiedzać podobne wierzchołki, ale mieć inną długość trasy, jeżeli używają innych krawędzi.
+W obu instancjach podobieństwo po krawędziach dawało silniejszy sygnał niż podobieństwo po samych wierzchołkach. Dla TSPA korelacja z podobieństwem do B wzrosła z 0.558 dla wierzchołków do 0.662 dla krawędzi, a dla średniego podobieństwa do pozostałych optimów z 0.532 do 0.619. Dla TSPB najmocniejszy wynik także dotyczył średniego podobieństwa po krawędziach i wyniósł 0.870. Jest to zgodne z charakterem problemu, bo jakość rozwiązania zależy nie tylko od wyboru wierzchołków, ale też od sposobu połączenia ich w cyklu.
 
-Bardzo dobre rozwiązanie użyte jako punkt odniesienia zostało w obu instancjach znalezione przez ILS. W tym eksperymencie ILS dał więc najlepszy pojedynczy wynik spośród metod użytych do wyznaczenia rozwiązania referencyjnego dla testu globalnej wypukłości.
+Bardzo dobre rozwiązanie B zostało w obu instancjach znalezione przez ILS. Dla TSPA miało wartość funkcji celu 8624, a dla TSPB 20213. To pokazuje, że ILS był bardzo mocnym źródłem pojedynczych dobrych rozwiązań. W dalszym porównaniu średnich wyników sytuacja była jednak różna: na TSPA najwyższą średnią uzyskał LNS, a na TSPB ILS.
 
-W zadaniu 6 najlepsze średnie wyniki w głównym porównaniu nadal uzyskały metody z poprzedniego zadania: na TSPA najlepszy był LNS, a na TSPB najlepszy był ILS. HAE nie poprawił najlepszych średnich wyników tych metod, ale jego najlepszy wariant był konkurencyjny względem MSLS i LNS. To pokazuje, że rekombinacja dobrych rozwiązań działała sensownie, ale w tej konfiguracji nie była wystarczająco silna, żeby zastąpić najlepsze metody perturbacyjne z lab4.
+W zadaniu 6 najlepsze średnie wyniki w głównym porównaniu uzyskały metody z poprzedniego etapu. Na TSPA najlepszy był LNS ze średnią 8360.850, a na TSPB najlepszy był ILS ze średnią 20050.900. HAE nie przebił najlepszej metody dla żadnej instancji, ale najlepszy wariant HAE był wyraźnie lepszy od MSLS i bliski najlepszym metodom perturbacyjnym.
 
-Najlepszym wariantem HAE był HAE z operatorem 1 i lokalnym przeszukiwaniem po rekombinacji. Operator 1 zachowuje zarówno wspólne krawędzie, jak i wspólne wierzchołki rodziców, dlatego przekazuje do potomka więcej stabilnej struktury niż operator 2 i operator 3. Wyniki sugerują, że korzystniejsze było zachowywanie większej części wspólnej struktury rodziców niż mocniejsze niszczenie rozwiązania i późniejsze odbudowywanie go przez repair.
+Najlepszym wariantem HAE w obu instancjach był HAE_OP1_LS. Na TSPA osiągnął średnią 7968.850, czyli był lepszy od MSLS o około 392 punkty, ale słabszy od LNS także o około 392 punkty. Na TSPB osiągnął średnią 19841.150, czyli był lepszy od MSLS o około 648 punktów i słabszy od ILS tylko o około 210 punktów. Na TSPB HAE_OP1_LS był też lepszy od LNS.
 
-Operator 2 z lokalnym przeszukiwaniem był znacznie lepszy niż jego wersja bez lokalnego przeszukiwania. Na TSPA różnica średnich wartości funkcji celu wynosiła około 784 punkty, a na TSPB około 1087 punktów. Oznacza to, że sam repair po rekombinacji operatora 2 nie wystarczał do pełnego wykorzystania powstałego potomka. Lokalna poprawa była potrzebna, żeby uporządkować rozwiązanie po połączeniu fragmentów.
+Operator 1 okazał się najstabilniejszym operatorem rekombinacji w naszych wynikach. Ten operator zachowuje wspólne krawędzie i wspólne wierzchołki rodziców, więc przekazuje potomkowi najbardziej bezpośrednią część wspólnej struktury dobrych rozwiązań. Wyniki sugerują, że dla tej konfiguracji bardziej opłacało się zachowywać potwierdzone fragmenty rodziców niż silniej filtrować rozwiązanie i liczyć głównie na późniejszy repair.
 
-Dla operatora 3 różnica między wersją z lokalnym przeszukiwaniem i bez niego była mniejsza. Operator 3 zachowuje tylko wspólne wierzchołki i kolejność z rodzica bazowego, więc tworzy prostszy partial cycle niż operator 2. Taki potomek może być łatwiejszy do naprawienia przez sam repair, ale jednocześnie traci więcej informacji o wspólnych krawędziach rodziców, co ogranicza jakość końcowego wyniku.
+Lokalne przeszukiwanie po repair miało duże znaczenie dla jakości HAE. Najlepiej widać to dla operatora 2: na TSPA wersja z local search osiągnęła 7847.350, a wersja bez local search 7063.850, czyli różnica wyniosła około 784 punkty. Na TSPB różnica była jeszcze większa: 19793.950 wobec 18707.300, czyli około 1087 punktów. Repair 2-regret z PhaseTwoDelete odbudowywał poprawny cykl, ale bez lokalnego przeszukiwania jakość potomka po rekombinacji była wyraźnie słabsza.
 
-Warianty bez lokalnego przeszukiwania wykonywały więcej iteracji, ale większa liczba iteracji nie przełożyła się automatycznie na lepszą jakość rozwiązań. Szczególnie widać to dla operatora 3, który wykonywał najwięcej iteracji, lecz nie dawał najlepszych wyników. Liczba iteracji pokazuje więc bardziej koszt pojedynczej próby niż skuteczność metody. Dobra iteracja HAE musi nie tylko szybko tworzyć potomka, ale też zachowywać i poprawiać wartościową strukturę rozwiązania.
+Dla operatora 3 wpływ local search był mniejszy. Na TSPA różnica między HAE_OP3_LS i HAE_OP3_NO_LS wyniosła około 80 punktów, a na TSPB około 135 punktów. Operator 3 zachowuje tylko wspólne wierzchołki w kolejności jednego rodzica, więc tworzy prostszy partial cycle i traci więcej informacji o krawędziach. Taki potomek jest łatwiejszy do naprawienia, ale ma mniejszy potencjał jakościowy.
 
-Metody referencyjne 2-regret z PhaseTwoDelete oraz bazowe lokalne przeszukiwanie osiągnęły wyniki wyraźnie słabsze od głównych metaheurystyk. Oznacza to, że samo zachłanne konstruowanie rozwiązania albo pojedyncze lokalne przeszukiwanie z losowego startu nie wystarcza do uzyskania jakości porównywalnej z MSLS, ILS, LNS i najlepszymi wariantami HAE. Lepsze wyniki wymagały wielokrotnego wychodzenia z lokalnych optimów przez perturbację, destroy-repair albo rekombinację.
+Liczba iteracji nie była dobrym samodzielnym wskaźnikiem jakości metody. HAE_OP3_NO_LS wykonywał najwięcej iteracji: średnio 1509.450 na TSPA i 2293.950 na TSPB, ale nie dawał najlepszych wyników. Z kolei HAE_OP1_LS wykonywał dużo mniej iteracji, odpowiednio 304.400 i 457.800, a mimo to był najlepszym wariantem HAE. Ważniejsza była jakość tworzonego potomka niż sama liczba prób wykonanych w limicie czasu.
+
+Metody referencyjne 2REGRET_P2D i BASE_LS osiągnęły wyniki wyraźnie słabsze od głównych metaheurystyk. Na TSPA 2REGRET_P2D uzyskał średnio 6065.250, a BASE_LS 5835.650. Na TSPB było to odpowiednio 18236.550 i 16800.650. Oznacza to, że pojedyncza heurystyka konstrukcyjna albo pojedyncze lokalne przeszukiwanie z losowego startu nie wystarczały do uzyskania jakości porównywalnej z MSLS, ILS, LNS i najlepszymi wariantami HAE.
+
+Ogólny wynik zadania 6 pokazuje kompromis między siłą pojedynczej próby a liczbą prób w tym samym czasie. Warianty bez local search wykonywały więcej iteracji, ale traciły jakość. Warianty z local search wykonywały mniej iteracji, ale dawały lepsze potomki. Najlepsze wyniki HAE uzyskano wtedy, gdy rekombinacja zachowywała wartościową strukturę rodziców, a local search poprawiał rozwiązanie po repair.
 
 ## 8. Wizualizacje najlepszych rozwiązań
 
@@ -581,3 +586,4 @@ Metody referencyjne 2-regret z PhaseTwoDelete oraz bazowe lokalne przeszukiwanie
 ![TSPB - HAE OP3 LS.](images/lab6/best_solutions/main/tspb_hae_op3_ls.png)
 
 ![TSPB - HAE OP3 NO LS.](images/lab6/best_solutions/main/tspb_hae_op3_no_ls.png)
+
